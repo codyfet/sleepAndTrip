@@ -11,8 +11,7 @@ import java.util.List;
 
 @RepositoryRestResource(collectionResourceRel = "person", path = "/person")
 interface RestTest extends CrudRepository<Person, Long> {
-
-
     //    List<Person> list();
     List<Person> findByFirstNameIgnoreCase(@Param("firstName") String firstName);
+    List<Person> findByEmailIgnoreCase(@Param("email") String email);
 }
