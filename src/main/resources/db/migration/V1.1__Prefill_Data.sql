@@ -1,0 +1,14 @@
+insert into PERSON (FIRSTNAME,SECONDNAME,PHONE,EMAIL,PREFERADRESS)
+        values ('Vasily','TERKIN','+7(800)800-80-80','example@example.ru','Adress number one');
+
+insert into PERSON (FIRSTNAME) values ('Georgy');
+
+INSERT INTO ORDERSTATE (ID,SYSTEMNAME,NAME) VALUES (1,'created','Создан');
+INSERT INTO ORDERSTATE (ID,SYSTEMNAME,NAME) VALUES (2,'payed','Оплачен');
+INSERT INTO ORDERSTATE (ID,SYSTEMNAME,NAME) VALUES (3,'process','Производится');
+INSERT INTO ORDERSTATE (ID,SYSTEMNAME,NAME) VALUES (4,'sended','Отправлен');
+INSERT INTO ORDERSTATE (ID,SYSTEMNAME,NAME) VALUES (5,'delivered','Получен');
+
+
+insert into "ORDER" ( ADRESS, DELIVERYTYPEID, ORDERSTATEID, SUMM, HAVEPATCH) values ('1', 1, 2, 50.0, TRUE);
+insert into "ORDER" ( ADRESS, DELIVERYTYPEID, ORDERSTATEID, SUMM, HAVEPATCH) values ('2', 1, 3, 150.0, FALSE);

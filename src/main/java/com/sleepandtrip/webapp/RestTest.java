@@ -14,5 +14,5 @@ interface RestTest extends CrudRepository<Person, Long> {
 
 
     //    List<Person> list();
-    List<Person> findByNameIgnoreCase(@Param("name") String name);
+    List<Person> findByFirstNameIgnoreCase(@Param("firstName") String firstName);
 }
