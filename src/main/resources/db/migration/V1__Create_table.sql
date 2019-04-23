@@ -9,7 +9,7 @@ create table PERSON
 
 );
 
-create TABLE "ORDER"
+create TABLE ORDERS
 (
     ID              bigint PRIMARY KEY AUTO_INCREMENT,
     ADRESS          varchar(255) not null,

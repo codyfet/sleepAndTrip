@@ -24,12 +24,12 @@ public class Person {
     @Setter
     @Getter
     @Length(max = 70)
-    @Column(nullable = true,name = "FIRSTNAME")
+    @Column(nullable = true, name = "FIRSTNAME")
     private String firstName;
     @Setter
     @Getter
     @Length(max = 70)
-    @Column(nullable = true,name = "SECONDNAME")
+    @Column(nullable = true, name = "SECONDNAME")
     private String secondName;
     @Setter
     //@Getter
@@ -47,22 +47,33 @@ public class Person {
     @Column(nullable = true, name = "PREFERADRESS")
     private String preferAdress;
 
+    public Person(String firstName, String secondName, String phone, String email, String preferAdress) {
+        this.email = email;
+        this.phone = phone;
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.preferAdress = preferAdress;
+    }
 
-    public String getPhone(){
-        return phone==null ? null : phone.replaceAll("[()\\s]+", "-").
+    public String getPhone() {
+        return phone == null ? null : phone.replaceAll("[()\\s]+", "-").
                 replaceAll("\\d(?=(?:\\D*\\d){4})", "*");
     }
 
-    private String getUcncryptedPhone(){
+    private String getUcncryptedPhone() {
         return phone;
     }
 
     public String getEmail() {
-        return email==null ? null : email.replaceAll("[\\s]+","*")
+        return email == null ? null : email.replaceAll("[\\s]+", "*")
                 .replaceAll("\\S(?=(?:\\s*\\S){3,})", "*");
     }
 
-    private String getEncryptedEmail(){
+    private String getEncryptedEmail() {
         return email;
     }
+
+    private Person() {
+    }
+
 }

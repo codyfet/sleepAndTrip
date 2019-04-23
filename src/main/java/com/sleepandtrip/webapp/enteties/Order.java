@@ -14,7 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ORDER")
+@Table(name = "ORDERS")
 @ToString
 public class Order {
     @Id
@@ -30,7 +30,7 @@ public class Order {
     @Getter
     @Setter
     @Column(name = "DELIVERYTYPEID", nullable = false)
-    private int deliveryTypeId;
+    private Byte deliveryTypeId;
     @Getter
     @Setter
     @Column(nullable = true, name = "TRACKNUMBER")
@@ -39,7 +39,7 @@ public class Order {
     @Getter
     @Setter
     @Column(name = "ORDERSTATEID", nullable = false)
-    private int orderState;
+    private Byte orderState;
     @Getter
     @Setter
     @Length(max=150)
@@ -48,7 +48,7 @@ public class Order {
     @Setter
     @Column(name="FEEDBACKRANGE")
     @Length(max=1)
-    private int feedbackRange;
+    private Byte feedbackRange;
     @Getter
     @Setter
     @Column(name="FEEDBACKCOMMENT")
@@ -61,19 +61,19 @@ public class Order {
     @Getter
     @Setter
     @Column(name="CANVASID")
-    private long canvasId;
+    private Long canvasId;
     @Getter
     @Setter
     @Column(name="SACHEID")
-    private long sacheId;
+    private Long sacheId;
     @Getter
     @Setter
     @Column(name="CASETYPEID")
-    private long caseTypeId;
+    private Long caseTypeId;
     @Getter
     @Setter
     @Column(name="HAVEPATCH")
-    private boolean havePatch;
+    private Boolean havePatch;
     @Getter
     @Setter
     @Length(max=255)
