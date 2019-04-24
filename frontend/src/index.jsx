@@ -1,14 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom";
-
-import "./styles";
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 
 class HelloWorld extends React.Component {
-
-    render () {
-        var hello = "dfgsdjsg!!";
-        return <span>{hello}</span>
+    render() {
+        return (<div>Hello world!</div>);
     }
 }
 
-ReactDOM.render(<HelloWorld />, document.getElementById("root"));
+ReactDOM.render(
+    <HelloWorld />,
+    document.getElementById("app")
+);
+module.hot.accept();
