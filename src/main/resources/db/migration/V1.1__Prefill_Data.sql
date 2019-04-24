@@ -1,7 +1,9 @@
 insert into PERSON (FIRSTNAME,SECONDNAME,PHONE,EMAIL,PREFERADRESS)
         values ('Vasily','TERKIN','+7(800)800-80-80','example@example.ru','Adress number one');
 
-insert into PERSON (FIRSTNAME) values ('Georgy');
+insert into PERSON (FIRSTNAME,SECONDNAME,PHONE,EMAIL,PREFERADRESS)
+values ('Mikhsail','-','+7(900)900-90-90','exampl2e@examp2le.ru','Adress number two');
+
 
 INSERT INTO ORDERSTATE (ID,SYSTEMNAME,NAME) VALUES (1,'created','Создан');
 INSERT INTO ORDERSTATE (ID,SYSTEMNAME,NAME) VALUES (2,'payed','Оплачен');

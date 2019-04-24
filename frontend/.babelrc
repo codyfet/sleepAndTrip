@@ -4,4 +4,3 @@
         ["@babel/env", {"modules": false}]
     ]
 }
-

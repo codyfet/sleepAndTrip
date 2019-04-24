@@ -1,4 +1,6 @@
 const webpack = require('webpack');
+var path = require('path');
+// Access-Control-Allow-Origin: localhost:808*;
 
 module.exports = {
   entry: './src/index.jsx',
@@ -38,5 +40,6 @@ module.exports = {
   devServer: {
     contentBase: './dist',
     hot: true
+
   }
 };
