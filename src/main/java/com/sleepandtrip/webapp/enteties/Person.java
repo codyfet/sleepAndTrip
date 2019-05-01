@@ -24,28 +24,28 @@ public class Person {
     @Setter
     @Getter
     @Length(max = 70)
-    @Column(nullable = true, name = "FIRSTNAME")
+    @Column(nullable = true, name = "FIRSTNAME") //TODO: Make nullable = false
     private String firstName;
     @Setter
     @Getter
     @Length(max = 70)
-    @Column(nullable = true, name = "SECONDNAME")
+    @Column(nullable = true, name = "SECONDNAME") //TODO: Make nullable = false
     private String secondName;
     @Setter
     //@Getter
     @Length(max = 20)
-    @Column(nullable = true)
     private String phone;
     @Setter
     //@Getter
     @Length(max = 255)
-    @Column(nullable = true)
     private String email;
     @Setter
     @Getter
     @Length(max = 255)
-    @Column(nullable = true, name = "PREFERADRESS")
+    @Column(nullable = true, name = "PREFERADRESS") //TODO: Make nullable = false
     private String preferAdress;
+
+    public Person(){}
 
     public Person(String firstName, String secondName, String phone, String email, String preferAdress) {
         this.email = email;
@@ -71,9 +71,6 @@ public class Person {
 
     private String getEncryptedEmail() {
         return email;
-    }
-
-    private Person() {
     }
 
 }
