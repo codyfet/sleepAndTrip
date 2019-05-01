@@ -1,6 +1,7 @@
 package com.sleepandtrip.webapp.enteties;
 
 
+import com.sleepandtrip.webapp.enteties.enums.OrderState;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "ORDERS")
 @ToString
@@ -24,7 +26,7 @@ public class Order {
     private Long id;
     @Getter
     @Setter
-    @Length(max=255)
+    @Length(max = 255)
     @Column(nullable = false)
     private String adress;
     @Getter
@@ -33,26 +35,26 @@ public class Order {
     private Byte deliveryTypeId;
     @Getter
     @Setter
-    @Column(nullable = true, name = "TRACKNUMBER")
-    @Length(max=100)
+    @Column(nullable = true, name = "TRACKNUMBER") //TODO: Make nullable = false
+    @Length(max = 100)
     private String trackNumber;
     @Getter
     @Setter
-    @Column(name = "ORDERSTATEID", nullable = false)
-    private Byte orderState;
+    @Column(name = "ORDERSTATE", nullable = false)
+    private OrderState orderState;
     @Getter
     @Setter
-    @Length(max=150)
+    @Length(max = 150)
     private String comment;
     @Getter
     @Setter
-    @Column(name="FEEDBACKRANGE")
-    @Length(max=1)
+    @Column(name = "FEEDBACKRANGE")
+    @Length(max = 1)
     private Byte feedbackRange;
     @Getter
     @Setter
-    @Column(name="FEEDBACKCOMMENT")
-    @Length(max=255)
+    @Column(name = "FEEDBACKCOMMENT")
+    @Length(max = 255)
     private String feedbackComment;
     @Getter
     @Setter
@@ -60,23 +62,23 @@ public class Order {
     private Float summ;
     @Getter
     @Setter
-    @Column(name="CANVASID")
+    @Column(name = "CANVASID")
     private Long canvasId;
     @Getter
     @Setter
-    @Column(name="SACHEID")
+    @Column(name = "SACHEID")
     private Long sacheId;
     @Getter
     @Setter
-    @Column(name="CASETYPEID")
+    @Column(name = "CASETYPEID")
     private Long caseTypeId;
     @Getter
     @Setter
-    @Column(name="HAVEPATCH")
+    @Column(name = "HAVEPATCH")
     private Boolean havePatch;
     @Getter
     @Setter
-    @Length(max=255)
-    @Column(name="LETTERINGURL")
+    @Length(max = 255)
+    @Column(name = "LETTERINGURL")
     private String letteringURL;
 }
