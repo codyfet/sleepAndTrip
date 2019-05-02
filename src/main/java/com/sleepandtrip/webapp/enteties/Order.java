@@ -28,14 +28,14 @@ public class Order {
     @Setter
     @Length(max = 255)
     @Column(nullable = false)
-    private String adress;
+    private String adress; //TODO: Move to OrderToPerson entity on STAGE 2
     @Getter
     @Setter
     @Column(name = "DELIVERYTYPEID", nullable = false)
     private Byte deliveryTypeId;
     @Getter
     @Setter
-    @Column(nullable = true, name = "TRACKNUMBER") //TODO: Make nullable = false
+    @Column(name = "TRACKNUMBER")
     @Length(max = 100)
     private String trackNumber;
     @Getter
@@ -46,16 +46,6 @@ public class Order {
     @Setter
     @Length(max = 150)
     private String comment;
-    @Getter
-    @Setter
-    @Column(name = "FEEDBACKRANGE")
-    @Length(max = 1)
-    private Byte feedbackRange;
-    @Getter
-    @Setter
-    @Column(name = "FEEDBACKCOMMENT")
-    @Length(max = 255)
-    private String feedbackComment;
     @Getter
     @Setter
     @Column(nullable = false)
@@ -81,4 +71,23 @@ public class Order {
     @Length(max = 255)
     @Column(name = "LETTERINGURL")
     private String letteringURL;
+    @Getter
+    @Setter
+    @Column(name="ORDER_DATE",nullable = false )
+    private String orderDate;
+    @Getter
+    @Setter
+    @Column(name="DONE_DATE")
+    private String orderDoneDate;
+
+//    @Getter
+//    @Setter
+//    @Column(name = "FEEDBACKRANGE")
+//    @Length(max = 1)
+//    private Byte feedbackRange;
+//    @Getter
+//    @Setter
+//    @Column(name = "FEEDBACKCOMMENT")
+//    @Length(max = 255)
+//    private String feedbackComment;
 }

@@ -11,23 +11,11 @@ values ('Vas', 'Vetrov', '+7(800)800-80-80', 'example@example.ru', 'EXAMPLE');
 insert into PERSON (FIRSTNAME, SECONDNAME, PHONE, EMAIL, PREFERADRESS)
 values ('Михаил', 'Пряников', '+7(900)900-90-90', 'exampl2e@examp2le.ru', 'EXAMPLE2');
 
--- INSERT INTO ORDERSTATE (ID, SYSTEMNAME, NAME)
--- VALUES (1, 'created', 'Создан');
--- INSERT INTO ORDERSTATE (ID, SYSTEMNAME, NAME)
--- VALUES (2, 'payed', 'Оплачен');
--- INSERT INTO ORDERSTATE (ID, SYSTEMNAME, NAME)
--- VALUES (3, 'process', 'Производится');
--- INSERT INTO ORDERSTATE (ID, SYSTEMNAME, NAME)
--- VALUES (4, 'sended', 'Отправлен');
--- INSERT INTO ORDERSTATE (ID, SYSTEMNAME, NAME)
--- VALUES (5, 'delivered', 'Получен');
+insert into ORDERS (ADRESS, DELIVERYTYPEID, ORDERSTATE, SUMM, HAVEPATCH, ORDER_DATE)
+values ('1', 1, 'Delivered', 50.0, TRUE, to_date('dd.mm.yyyy','01.01.2000'));
+insert into ORDERS (ADRESS, DELIVERYTYPEID, ORDERSTATE, SUMM, HAVEPATCH, ORDER_DATE)
+values ('2', 1, 'Process', 150.0, FALSE, to_date('dd.mm.yyyy','01.01.2000'));
 
 
-insert into ORDERS (ADRESS, DELIVERYTYPEID, ORDERSTATE, SUMM, HAVEPATCH)
-values ('1', 1, 'Delivered', 50.0, TRUE);
-insert into ORDERS (ADRESS, DELIVERYTYPEID, ORDERSTATE, SUMM, HAVEPATCH)
-values ('2', 1, 'Process', 150.0, FALSE);
-
---insert into CANVAS()
 
 

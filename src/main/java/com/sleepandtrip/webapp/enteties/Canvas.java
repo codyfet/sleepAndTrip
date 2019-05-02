@@ -19,7 +19,13 @@ public class Canvas {
     @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name= "CANVASID")
     private Long Id;
+    @Getter
+    @Setter
+    @Length(max = 32)
+    @Column(name = "NAME") //TODO: Make column Canvas preview URL nullable = false
+    private String name;
     @Getter
     @Setter
     @Length(max = 255)
