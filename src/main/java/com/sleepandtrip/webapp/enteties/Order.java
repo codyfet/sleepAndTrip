@@ -9,10 +9,13 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 
 @Entity
@@ -40,6 +43,7 @@ public class Order {
     private String trackNumber;
     @Getter
     @Setter
+    @Enumerated(EnumType.STRING)
     @Column(name = "ORDERSTATE", nullable = false)
     private OrderState orderState;
     @Getter

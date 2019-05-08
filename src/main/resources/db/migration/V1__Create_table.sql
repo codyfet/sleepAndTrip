@@ -40,7 +40,7 @@ CREATE TABLE PERSONORDERS --TODO: Do i need this table? I think that table helps
 
 CREATE TABLE CANVAS
 (
-    ID           int PRIMARY KEY AUTO_INCREMENT,
+    ID           bigint PRIMARY KEY AUTO_INCREMENT,
     NAME         varchar(32)  not null,
     COMPOSITION varchar(100)  null,
     PREVIEW_URL  varchar(255) not null,
@@ -53,7 +53,7 @@ CREATE TABLE CANVAS
 
 CREATE TABLE SACHE
 (
-    SACHEID     int PRIMARY KEY AUTO_INCREMENT,
+    SACHEID     bigint PRIMARY KEY AUTO_INCREMENT,
     NAME        varchar(32)  not null,
     DESCRIPTION varchar(255) not null,
     IS_IN_STORE boolean      not null
@@ -61,7 +61,7 @@ CREATE TABLE SACHE
 
 CREATE TABLE COVER
 (
-    COVERID     int primary key AUTO_INCREMENT,
+    COVERID     bigint primary key AUTO_INCREMENT,
     NAME        varchar(32)  not null,
     DESCRIPTION varchar(255) not null,
     IN_STORE    boolean      not null
@@ -69,7 +69,7 @@ CREATE TABLE COVER
 
 CREATE TABLE DELIVERY
 (
-    ID       int PRIMARY KEY AUTO_INCREMENT,
+    ID       bigint PRIMARY KEY AUTO_INCREMENT,
     NAME     varchar(100) not null,
     PHONE    varchar(20)  not null,
     ISACTIVE boolean      not null

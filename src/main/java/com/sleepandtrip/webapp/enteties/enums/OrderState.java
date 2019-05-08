@@ -3,11 +3,27 @@ package com.sleepandtrip.webapp.enteties.enums;
 public enum OrderState {
     //TODO: Defind oreder states
 
-    /*
-     *    1,'created','Создан'
-     *    2,'payed','Оплачен'
-     *    3,'process','Производится'
-     *    4,'sended','Отправлен'
-     *    5,'delivered','Получен'
-     */
+
+    CREATED     ("Создан"),
+    PAYED       ("Оплачен"),
+    PROCESS     ("Производится"),
+    SENDED      ("Отправлен"),
+    DELIVERED   ("Получен");
+
+    private String title;
+
+    OrderState(String title){
+        this.title = title;
+    }
+
+    public String getTitle(){
+        return title;
+    }
+
+    @Override
+    public String toString(){
+        return title;
+    }
 }
+
+
