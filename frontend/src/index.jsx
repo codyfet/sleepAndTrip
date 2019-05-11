@@ -13,6 +13,19 @@ class App extends React.Component {
         this.state = {person: []};
     }
 
+    getByFetch(){
+        fetch('http://localhost:8080/api/person', {mode: 'cors'})
+            .then(function (response) {
+                return response.text();
+            })
+            .then(function (text){
+                console.log('Request succefulll', text);
+            })
+            .catch(function (error) {
+                log('Request failed', error)
+            });
+    }
+
     componentDidMount() {
         client({method: 'GET', path: 'http://localhost:8080/api/person'}).done(response => {
             this.setState({person: response.entity._embedded.person});
@@ -23,8 +36,9 @@ class App extends React.Component {
     render() {
         return (
             <div>
-            <PersonList person={this.state.person}/>
-            <OrderForm/>
+                <PersonList person={this.state.person}/>
+                <OrderForm/>
+                <button onMouseDown={this.getByFetch()}>PUSHME</button>
             </div>
         )
     }
@@ -53,13 +67,13 @@ class PersonList extends React.Component{
 
 class Person extends React.Component{
     render() {
-        console.log(this.props.children)
+        //console.log(this.props.children)
         return(
-        <tr>
-            <td>{this.props.person.firstName}</td>
-            <td>{this.props.person.secondName}</td>
-            <td>{this.props.person.preferAdress}</td>
-        </tr>
+            <tr>
+                <td>{this.props.person.firstName}</td>
+                <td>{this.props.person.secondName}</td>
+                <td>{this.props.person.preferAdress}</td>
+            </tr>
         );
     }
 }
@@ -70,3 +84,4 @@ ReactDOM.render(
     document.getElementById("app")
 );
 module.hot.accept();
+

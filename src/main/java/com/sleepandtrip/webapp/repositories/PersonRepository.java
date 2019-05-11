@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = "http://localhost:8082")
 @RepositoryRestResource(collectionResourceRel = "person", path = "/person")
 interface PersonRepository extends CrudRepository<Person, Long> {
 //    List<Person> list();
