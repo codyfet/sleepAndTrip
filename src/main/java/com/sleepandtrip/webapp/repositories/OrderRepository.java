@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @Repository
 @CrossOrigin(origins = "http://localhost:8081")
 @RepositoryRestResource(collectionResourceRel = "order", path = "/order")
-public interface OrderRepository extends CrudRepository<WebOrder, Long> {
+public interface OrderRepository extends CrudRepository<Order, Long> {
 
 }
