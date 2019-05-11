@@ -1,10 +1,11 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import "./OrderForm";
+import { API_URL } from "./app-config";
 import {OrderForm} from "./OrderForm";
+// import { axios } from "axios";
 const client = require('./client');
 
-const ROOT_URL = "http://localhost:8080/api";
 
 class App extends React.Component {
 
@@ -13,32 +14,33 @@ class App extends React.Component {
         this.state = {person: []};
     }
 
-    getByFetch(){
-        fetch('http://localhost:8080/api/person', {mode: 'cors'})
+
+    componentDidMount(){
+        fetch(API_URL + '/person', {mode: 'cors'})
             .then(function (response) {
                 return response.text();
             })
             .then(function (text){
-                console.log('Request succefulll', text);
+                //console.log('Request succefulll', text);
             })
             .catch(function (error) {
                 log('Request failed', error)
             });
     }
 
-    componentDidMount() {
-        client({method: 'GET', path: 'http://localhost:8080/api/person'}).done(response => {
+    getByFetch() {
+        client({method: 'GET', path: API_URL + '/person'}).done(response => {
             this.setState({person: response.entity._embedded.person});
-            // console.log(response);
+            //console.log(response);
         });
     }
 
     render() {
         return (
             <div>
-                <PersonList person={this.state.person}/>
+                <button onClick={this.getByFetch()}>YA!</button>
                 <OrderForm/>
-                <button onMouseDown={this.getByFetch()}>PUSHME</button>
+                <PersonList person={this.state.person}/>
             </div>
         )
     }

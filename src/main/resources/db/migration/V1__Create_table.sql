@@ -12,16 +12,16 @@ CREATE TABLE ORDERS
 (
     ID              bigint PRIMARY KEY AUTO_INCREMENT,
     ADRESS          varchar(255) not null,
-    DELIVERYTYPEID  bigint       not null,
+    DELIVERYTYPEID  bigint       null,
     TRACKNUMBER     varchar(100) null, -- TODO: Move field to PERSONORDERS table on STAGE 2
-    ORDERSTATE      varchar(15)  not null,
+    ORDERSTATE      varchar(15)  null,
     COMMENT         varchar(150) null,
-    SUMM            float        not null,
+    SUMM            float        null,
     CANVASID        bigint       null,
     SACHEID         bigint       null,
     CASETYPEID      bigint       null,
     HAVEPATCH       boolean      null,
-    ORDER_DATE      date         not null,
+    ORDER_DATE      date         null,
     DONE_DATE       date         null
 --  FEEDBACKRANGE   int(1)       null, -- TODO: Make on STAGE 2
 --  FEEDBACKCOMMENT varchar(255) null, -- TODO: Make on STAGE 2

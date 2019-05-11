@@ -4,18 +4,18 @@ export class OrderForm extends React.Component {
 
     constructor(props) {
         super(props);
+        // this.handleSubmit = this.submitByButton();
         this.state = {
             adress: '',
             phone: '',
             deliveryType: '',
             comment: '',
-            sache : '',
-            canvas : '',
-            patch : '',
             caseType: '',
-            orderDate: ''
+            canvas: '',
+            sache: false,
+            patch: false
+};
 
-        };
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -23,7 +23,7 @@ export class OrderForm extends React.Component {
     }
 
 
-    handleInputChange(event) {
+    handleChange(event) {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
@@ -31,13 +31,14 @@ export class OrderForm extends React.Component {
         this.setState({
             [name]: value
         });
+        // console.log(this.state);
     }
 
-    handleChange(event) {
-
+    handleInputChange(event) {
+        console.log(this.state);
         this.setState({
-            value: event.target.value
-        });
+            [event.target.name]: event.target.value
+        })
     }
 
     handleSubmit(event) {
@@ -47,6 +48,41 @@ export class OrderForm extends React.Component {
     }
 
     render() {
-        return ( <h1>Hello!</h1> );
+        return (
+            <form>
+                <p>Adress:
+                <input name='adress' onChange={this.handleChange} value={this.state.adress}/>
+                </p>
+                <p>Phone:
+                <input name='phone' onChange={this.handleChange} value={this.state.phone}/>
+                </p>
+                <p>DeliveryType:
+                <input name='deliveryType' onChange={this.handleChange} value={this.state.deliveryType}/>
+                </p>
+                <p>Comment:
+                <input name='comment' onChange={this.handleChange} value={this.state.comment}/>
+                </p>
+                <p>Canvas:
+                <input name='canvas' onChange={this.handleChange} value={this.state.canvas}/>
+                </p>
+                <p>Sache:
+                    <select name='sache' onChange={this.handleChange} value={this.state.sache}>
+                        <option>Pepper</option>
+                        <option>Woodstock</option>
+                        <option>Nothing</option>
+                    </select>
+                </p>
+                <p>Patch:
+                <input type='checkbox' name='patch' onChange={this.handleChange} value={this.state.patch}/>
+                </p>
+                <p>CaseType:
+                <select type='select' name='caseType' onChange={this.handleChange} value={this.state.caseType}>
+                    <option>Paper</option>
+                    <option>Wood</option>
+                    <option>Nothing</option>
+                </select>
+                </p>
+            </form>
+        );
     }
 }
