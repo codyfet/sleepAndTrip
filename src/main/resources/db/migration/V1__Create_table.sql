@@ -1,4 +1,4 @@
-CREATE TABLE PERSON --TODO: Do
+CREATE TABLE PERSON
 (
     ID           bigint PRIMARY KEY AUTO_INCREMENT,
     FIRSTNAME    varchar(70)  null,
@@ -11,7 +11,7 @@ CREATE TABLE PERSON --TODO: Do
 CREATE TABLE ORDERS
 (
     ID              bigint PRIMARY KEY AUTO_INCREMENT,
-    ADRESS          varchar(255) not null,
+    ADRESS          varchar(255) not null, -- TODO: Move field to PERSONORDERS table on STAGE 2
     DELIVERYTYPEID  bigint       null,
     TRACKNUMBER     varchar(100) null, -- TODO: Move field to PERSONORDERS table on STAGE 2
     ORDERSTATE      varchar(15)  null,
@@ -22,7 +22,8 @@ CREATE TABLE ORDERS
     CASETYPEID      bigint       null,
     HAVEPATCH       boolean      null,
     ORDER_DATE      date         null,
-    DONE_DATE       date         null
+    DONE_DATE       date         null,
+    PHONE           varchar(13)  null  -- TODO: Move field to PERSON table on STAGE 2
 --  FEEDBACKRANGE   int(1)       null, -- TODO: Make on STAGE 2
 --  FEEDBACKCOMMENT varchar(255) null, -- TODO: Make on STAGE 2
 --  LETTERINGURL    varchar(255) null, -- TODO: Make on STAGE 2
@@ -64,7 +65,7 @@ CREATE TABLE COVER
     COVERID     bigint primary key AUTO_INCREMENT,
     NAME        varchar(32)  not null,
     DESCRIPTION varchar(255) not null,
-    IN_STORE    boolean      not null
+    IS_IN_STORE    boolean      not null
 );
 
 CREATE TABLE DELIVERY
@@ -72,6 +73,6 @@ CREATE TABLE DELIVERY
     ID       bigint PRIMARY KEY AUTO_INCREMENT,
     NAME     varchar(100) not null,
     PHONE    varchar(20)  not null,
-    ISACTIVE boolean      not null
+    IS_ACTIVE boolean      not null
 );
 

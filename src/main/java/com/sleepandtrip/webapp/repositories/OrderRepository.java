@@ -1,7 +1,6 @@
 package com.sleepandtrip.webapp.repositories;
 
 import com.sleepandtrip.webapp.enteties.Order;
-import com.sleepandtrip.webapp.enteties.web.WebOrder;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
