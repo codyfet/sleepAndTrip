@@ -29,7 +29,7 @@ public class Delivery {
     private String phone;
     @Getter
     @Setter
-    @Column(name = "ISACTIVE")
+    @Column(name = "IS_ACTIVE")
     private Boolean isActive;
 
 }

@@ -11,22 +11,24 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="SACHE")
-public class Sache {
+@Table(name = "COVER")
+public class Cover {
 
     @Id
     @Getter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Getter
     @Setter
     private String name;
+
     @Getter
     @Setter
     private String description;
+
     @Getter
     @Setter
-    @Column(name="IS_IN_STORE")
+    @Column(name = "IS_IN_STORE")
     private Boolean isInStore;
-
 }

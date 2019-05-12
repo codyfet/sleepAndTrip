@@ -77,8 +77,8 @@ public class Order {
 
     @Getter
     @Setter
-    @Column(name = "CASETYPEID")
-    private Long caseTypeId;
+    @Column(name = "COVERID")
+    private Long coverId;
 
     @Getter
     @Setter

@@ -19,7 +19,6 @@ public class Canvas {
     @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name= "ID")
     private Long id;
 
     @Getter
