@@ -26,24 +26,24 @@ public class OrderController {
     public Order createOrder(
             @RequestParam(value="adress") String adress,
             @RequestParam(value="phone") String phone,
-            @RequestParam(value="deliveryType") String deliveryType,
+            @RequestParam(value="deliveryType") Long deliveryType,
             @RequestParam(value="comment") String comment,
-            @RequestParam(value="canvas") String canvas,
-            @RequestParam(value="sache") String sache,
+            @RequestParam(value="canvas") Long canvas,
+            @RequestParam(value="sache") Long sache,
             @RequestParam(value="havePatch") Boolean havePatch,
-            @RequestParam(value="cover") String cover
+            @RequestParam(value="cover") Long cover
     ){
 
         Order newOrder = new Order();
 
         newOrder.setAdress(adress);
         newOrder.setPhone(phone);
-        newOrder.setDeliveryTypeId(1L);
+        newOrder.setDeliveryTypeId(deliveryType);
         newOrder.setComment(comment);
-        newOrder.setCanvasId(1L);
-        newOrder.setSacheId(1L);
+        newOrder.setCanvasId(canvas);
+        newOrder.setSacheId(sache);
         newOrder.setHavePatch(havePatch);
-        newOrder.setCoverId(1L);
+        newOrder.setCoverId(cover);
         newOrder.setOrderDate(new Date());
         newOrder.setOrderState(OrderState.CREATED);
 

@@ -80,28 +80,30 @@ export class OrderForm extends React.Component {
     }
 
     handleSubmit(event) {
-        const body = JSON.stringify(this.state.order);
-
-        fetch(API_URL+'/newOrder',
+        const parms = this.state.order;
+        const body =  Object.keys(parms).map(key => `${key}=${parms[key]}`).join('&');
+        fetch(API_URL+'/newOrder?'+body,
             {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: body
+                method: 'POST'
             })
             .then(response =>response.json())
             .then(response => {
-                alert('Well done!' + body);
+                this.setState({order: {
+                        adress: '',
+                        phone: '',
+                        deliveryType: '',
+                        comment: '',
+                        cover: '',
+                        canvas: '',
+                        sache: '',
+                        havePatch: false
+                    }});
                 console.log(response);
             })
             .catch(e => {
                 alert('error');
                 console.log(e);
             });
-
-        //alert('СОЗДАТ ' + this.state.order);
         event.preventDefault();
 
     }
