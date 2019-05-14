@@ -104,6 +104,7 @@ public class Order {
     @Getter
     @Setter
     @Column(name="PHONE")
+    @Length(max=13,min=6)
     private String phone;
 
 //    @Getter

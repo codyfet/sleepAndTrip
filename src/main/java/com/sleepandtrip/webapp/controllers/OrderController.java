@@ -5,6 +5,7 @@ import com.sleepandtrip.webapp.enteties.enums.OrderState;
 import com.sleepandtrip.webapp.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,14 +13,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
+import java.util.List;
 
 
 @RestController
-@RequestMapping(value = "/api", method = {RequestMethod.POST})
+@RequestMapping(value = "/api", method = {RequestMethod.POST, RequestMethod.GET})
 public class OrderController {
 
     @Autowired
     private OrderRepository orderRepository;
+
+    @GetMapping("/getAllOrders")
+    @CrossOrigin(origins = "http://localhost:8081")
+    public List<Order> getAllOrders(){
+
+        return (List<Order>) orderRepository.findAll();
+    }
 
     @PostMapping("/newOrder")
     @CrossOrigin(origins = "http://localhost:8081")
@@ -50,4 +59,6 @@ public class OrderController {
 
         return orderRepository.save(newOrder);
     }
+
+
 }

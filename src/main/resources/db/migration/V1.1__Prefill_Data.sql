@@ -23,10 +23,10 @@ insert into CANVAS (NAME, COMPOSITION, PREVIEW_URL, VIEW_URL, COST, IS_ARCHIEVED
 values ('Печатница', 'Хлопок 100%', 'first.jpg', 'bigfirst.jpg', 300, false, true);
 
 --- Заполнение таблицы заказов
-insert into ORDERS (ADRESS, DELIVERYTYPEID, ORDERSTATE, SUMM, HAVEPATCH, ORDER_DATE, CANVASID)
-values ('1', 1, 'DELIVERED', 50.0, TRUE, to_date('dd.mm.yyyy','01.01.2000'), 1);
-insert into ORDERS (ADRESS, DELIVERYTYPEID, ORDERSTATE, SUMM, HAVEPATCH, ORDER_DATE)
-values ('2', 1, 'PROCESS', 150.0, FALSE, to_date('dd.mm.yyyy','01.01.2000'));
+insert into ORDERS (ADRESS, DELIVERYTYPEID, ORDERSTATE, SUMM, HAVEPATCH, ORDER_DATE, CANVASID, PHONE )
+values ('г.Тверь, пр-кт Ленина, д.10', 1, 'DELIVERED', 50.0, TRUE, to_date('dd.mm.yyyy','01.01.2000'), 1, '79201628841');
+insert into ORDERS (ADRESS, DELIVERYTYPEID, ORDERSTATE, SUMM, HAVEPATCH, ORDER_DATE, PHONE )
+values ('г.Тверь, ул.Нагорная', 1, 'PROCESS', 150.0, FALSE, to_date('dd.mm.yyyy','01.01.2000'), '79201628841');
 
 
 insert into DELIVERY (NAME, PHONE, IS_ACTIVE) VALUES ('Почта России','+7(4822)39-41-91',TRUE);

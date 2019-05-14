@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {OrderForm} from "./OrderForm";
+import {OrderList} from "./components/OrderList";
+import {OrderForm} from "./components/OrderForm";
 
 
 class App extends React.Component {
@@ -11,12 +12,16 @@ class App extends React.Component {
 
 
     render() {
-        return <OrderForm />
+        return        <div>
+            <OrderList/>
+            <OrderForm/>
+        </div>
+
     }
 }
 
 ReactDOM.render(
-    <App />,
+    <App/>,
     document.getElementById("app")
 );
 module.hot.accept();

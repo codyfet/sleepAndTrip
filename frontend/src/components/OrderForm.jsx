@@ -1,5 +1,5 @@
 import * as React from "react";
-import {API_URL} from "./app-config";
+import {API_URL} from "../app-config";
 
 export class OrderForm extends React.Component {
 
@@ -135,7 +135,7 @@ export class OrderForm extends React.Component {
                 <p>Комментарий:
                     <input name='comment' onChange={this.handleChange} value={this.state.order.comment}/>
                 </p>
-                <p>Назвине ткани:
+                <p>Название ткани:
                     <select name='canvas' onChange={this.handleChange} value={this.state.order.canvas}>
                         <option value=""></option>
                         {canvasList.map((canvas) =>
@@ -144,7 +144,6 @@ export class OrderForm extends React.Component {
                             </option>)
                         }
                     </select>
-
                 </p>
                 <p>Аромат саше:
                     <select name='sache' onChange={this.handleChange} value={this.state.order.sache}>
