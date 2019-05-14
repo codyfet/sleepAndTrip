@@ -20,7 +20,7 @@ module.exports = {
             test: /\.(less|css)$/,
             use: [
               'style-loader',
-              { loader: 'css-loader', options: { importLoaders: 1, minimize: true } },
+              { loader: 'css-loader'},
               'less-loader',
             ],
           },

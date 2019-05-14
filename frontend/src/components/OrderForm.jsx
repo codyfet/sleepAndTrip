@@ -88,7 +88,7 @@ export class OrderForm extends React.Component {
             })
             .then(response =>response.json())
             .then(response => {
-                this.setState({order: {
+                this.setState({order: { //TODO: Убрать эту дичь
                         adress: '',
                         phone: '',
                         deliveryType: '',

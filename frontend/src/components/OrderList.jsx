@@ -2,6 +2,7 @@ import * as React from "react";
 import ReactTable from 'react-table';
 import {API_URL} from "../app-config";
 import {OrderForm} from "./OrderForm";
+import 'react-table/react-table.css';
 
 
 export class OrderList extends React.Component {
@@ -12,9 +13,7 @@ export class OrderList extends React.Component {
             isLoading: true,
             orders: []
         }
-
     }
-
 
     componentDidMount() {
         fetch(API_URL + "/getAllOrders")
