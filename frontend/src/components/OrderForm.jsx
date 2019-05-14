@@ -36,21 +36,7 @@ export class OrderForm extends React.Component {
             mode: 'cors',
             cache: 'default'
         };
-        fetch(API_URL + '/getDelivery', myInint)
-            .then(response => response.json())
-            .then(data => this.setState({deliveryList: data}));
 
-        fetch(API_URL + '/getCanvas', myInint)
-            .then(response => response.json())
-            .then(data => this.setState({canvasList: data}));
-
-        fetch(API_URL + '/getCover', myInint)
-            .then(response => response.json())
-            .then(data => this.setState({coverList: data}));
-
-        fetch(API_URL + '/getSache', myInint)
-            .then(response => response.json())
-            .then(data => this.setState({sacheList: data, isLoading: false}));
         // Promise.all(
         //     fetch(API_URL + '/getDelivery', myInint),
         //     fetch(API_URL + '/getCanvas', myInint),
@@ -71,6 +57,22 @@ export class OrderForm extends React.Component {
         //         alert("Ошибка загрузки данных");
         //     }
         // );
+
+        fetch(API_URL + '/getDelivery', myInint)
+            .then(response => response.json())
+            .then(data => this.setState({deliveryList: data}));
+
+        fetch(API_URL + '/getCanvas', myInint)
+            .then(response => response.json())
+            .then(data => this.setState({canvasList: data}));
+
+        fetch(API_URL + '/getCover', myInint)
+            .then(response => response.json())
+            .then(data => this.setState({coverList: data}));
+
+        fetch(API_URL + '/getSache', myInint)
+            .then(response => response.json())
+            .then(data => this.setState({sacheList: data, isLoading: false}));
     }
 
     handleChange(event) {
@@ -106,7 +108,7 @@ export class OrderForm extends React.Component {
             })
             .then(response =>response.json())
             .then(response => {
-                this.setState({order: { //TODO: Убрать эту дичь
+                this.setState({order: {
                         adress: '',
                         phone: '',
                         deliveryType: '',
@@ -117,6 +119,7 @@ export class OrderForm extends React.Component {
                         havePatch: false
                     }});
                 console.log(response);
+                this.props.onSubmitCallback()
             })
             .catch(e => {
                 alert('error');

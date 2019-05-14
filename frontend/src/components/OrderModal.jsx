@@ -3,6 +3,18 @@ import Modal from 'react-modal';
 import { OrderForm } from "./OrderForm";
 
 export class OrderModal extends React.Component {
+
+    constructor(props){
+        super(props);
+
+        this.handleOnSubmit = this.handleOnSubmit.bind(this);
+    }
+
+    handleOnSubmit () {
+        this.props.onUpdateTable();
+        this.props.onCloseModal();
+    }
+
     render() {
         return (
             <Modal
@@ -11,7 +23,9 @@ export class OrderModal extends React.Component {
                 onRequestClose={this.props.onCloseModal}
                 contentLabel="Example Modal"
             >
-                <OrderForm />
+                <OrderForm
+                    onSubmitCallback={this.handleOnSubmit}
+                />
                 <button onClick={this.props.onCloseModal}>close</button>
             </Modal>
         );

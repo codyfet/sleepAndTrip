@@ -1,9 +1,8 @@
 import React from "react";
 import ReactTable from 'react-table';
-import {API_URL} from "../app-config";
+import { API_URL } from "../app-config";
+import { OrderModal } from "./OrderModal";
 import 'react-table/react-table.css';
-import {OrderModal} from "./OrderModal";
-
 export class OrderList extends React.Component {
 
     constructor(props) {
@@ -13,26 +12,35 @@ export class OrderList extends React.Component {
             showCreateModal: false,
             isLoading: true,
             orders: []
-        };
+        }
 
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
+        this.handleUpdateTable = this.handleUpdateTable.bind(this);
     }
 
     componentDidMount() {
-        fetch(API_URL + "/getAllOrders")
+        this.refreshTable();
+    }
+
+    refreshTable () {
+        return fetch(API_URL + "/getAllOrders")
             .then(response => response.json())
             .then(data => {
-                this.setState({orders: data, isLoading: false});
-            })
+                this.setState({ orders: data, isLoading: false });
+            });
     }
 
     handleOpenModal() {
-        this.setState({showCreateModal: true});
+        this.setState({ showCreateModal: true });
     }
 
     handleCloseModal() {
-        this.setState({showCreateModal: false});
+        this.setState({ showCreateModal: false });
+    }
+
+    handleUpdateTable () {
+        this.refreshTable();
     }
 
     render() {
@@ -80,6 +88,7 @@ export class OrderList extends React.Component {
                 <OrderModal
                     isOpen={this.state.showCreateModal}
                     onCloseModal={this.handleCloseModal}
+                    onUpdateTable={this.handleUpdateTable}
                 />
             </React.Fragment>
         );

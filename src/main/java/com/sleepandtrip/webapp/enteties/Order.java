@@ -116,6 +116,7 @@ public class Order {
 //    @Setter
 //    @Column(name = "FEEDBACKCOMMENT")
 //    @Length(max = 255)
+
 //    private String feedbackComment;
 
 }
