@@ -3,22 +3,9 @@ import * as ReactDOM from "react-dom";
 import {OrderList} from "./components/OrderList";
 import {OrderForm} from "./components/OrderForm";
 
-
-class App extends React.Component {
-
-    constructor(props) {
-        super(props);
-    }
-
-
-    render() {
-        return        <div>
-            <OrderList/>
-            <OrderForm/>
-        </div>
-
-    }
-}
+const App = () => (
+    <OrderList/>
+);
 
 ReactDOM.render(
     <App/>,

@@ -1,18 +1,22 @@
-import * as React from "react";
+import React from "react";
 import ReactTable from 'react-table';
 import {API_URL} from "../app-config";
-import {OrderForm} from "./OrderForm";
 import 'react-table/react-table.css';
-
+import {OrderModal} from "./OrderModal";
 
 export class OrderList extends React.Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
+            showCreateModal: false,
             isLoading: true,
             orders: []
-        }
+        };
+
+        this.handleOpenModal = this.handleOpenModal.bind(this);
+        this.handleCloseModal = this.handleCloseModal.bind(this);
     }
 
     componentDidMount() {
@@ -21,6 +25,14 @@ export class OrderList extends React.Component {
             .then(data => {
                 this.setState({orders: data, isLoading: false});
             })
+    }
+
+    handleOpenModal() {
+        this.setState({showCreateModal: true});
+    }
+
+    handleCloseModal() {
+        this.setState({showCreateModal: false});
     }
 
     render() {
@@ -53,16 +65,23 @@ export class OrderList extends React.Component {
                 accessor: 'phone'
             }];
 
-        return <div><ReactTable
-            data={data}
-            columns={columns}
-            defaultPageSize={5}
-            showPaginationTop={true}
-            showPaginationBottom={false}
-        />
+        return (
+            <React.Fragment>
+                <ReactTable
+                    data={data}
+                    columns={columns}
+                    defaultPageSize={5}
+                    showPaginationTop={true}
+                    showPaginationBottom={false}
+                />
 
-        </div>
+                <button onClick={this.handleOpenModal}>Создать</button>
 
+                <OrderModal
+                    isOpen={this.state.showCreateModal}
+                    onCloseModal={this.handleCloseModal}
+                />
+            </React.Fragment>
+        );
     }
-
 }

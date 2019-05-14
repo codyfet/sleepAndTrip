@@ -118,7 +118,6 @@ public class Order {
 //    @Length(max = 255)
 //    private String feedbackComment;
 
-
 }
 
 
