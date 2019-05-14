@@ -37,26 +37,42 @@ export class OrderForm extends React.Component {
             cache: 'default'
         };
 
-        Promise.all(
-            fetch(API_URL + '/getDelivery', myInint),
-            fetch(API_URL + '/getCanvas', myInint),
-            fetch(API_URL + '/getCover', myInint),
-            fetch(API_URL + '/getSache', myInint)
-        ).then(
-            ([deliveryResponse, canvasResponse, coverResponse, sacheResponse]) => {
-                this.setState({
-                    deliveryList: deliveryResponse.json(),
-                    canvasList: canvasResponse.json(),
-                    coverList: coverResponse.json(),
-                    sacheList: sacheResponse.json(),
-                    isLoading: false
-                });
-            }
-        ).catch(
-            () => {
-                alert("Ошибка загрузки данных");
-            }
-        );
+        // Promise.all(
+        //     fetch(API_URL + '/getDelivery', myInint),
+        //     fetch(API_URL + '/getCanvas', myInint),
+        //     fetch(API_URL + '/getCover', myInint),
+        //     fetch(API_URL + '/getSache', myInint)
+        // ).then(
+        //     ([deliveryResponse, canvasResponse, coverResponse, sacheResponse]) => {
+        //         this.setState({
+        //             deliveryList: deliveryResponse.json(),
+        //             canvasList: canvasResponse.json(),
+        //             coverList: coverResponse.json(),
+        //             sacheList: sacheResponse.json(),
+        //             isLoading: false
+        //         });
+        //     }
+        // ).catch(
+        //     () => {
+        //         alert("Ошибка загрузки данных");
+        //     }
+        // );
+
+        fetch(API_URL + '/getDelivery', myInint)
+            .then(response => response.json())
+            .then(data => this.setState({deliveryList: data}));
+
+        fetch(API_URL + '/getCanvas', myInint)
+            .then(response => response.json())
+            .then(data => this.setState({canvasList: data}));
+
+        fetch(API_URL + '/getCover', myInint)
+            .then(response => response.json())
+            .then(data => this.setState({coverList: data}));
+
+        fetch(API_URL + '/getSache', myInint)
+            .then(response => response.json())
+            .then(data => this.setState({sacheList: data, isLoading: false}));
     }
 
     handleChange(event) {
@@ -103,6 +119,7 @@ export class OrderForm extends React.Component {
                         havePatch: false
                     }});
                 console.log(response);
+                this.props.onSubmitCallback()
             })
             .catch(e => {
                 alert('error');

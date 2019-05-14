@@ -16,14 +16,19 @@ export class OrderList extends React.Component {
 
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
+        this.handleUpdateTable = this.handleUpdateTable.bind(this);
     }
 
     componentDidMount() {
-        fetch(API_URL + "/getAllOrders")
+        this.refreshTable();
+    }
+
+    refreshTable () {
+        return fetch(API_URL + "/getAllOrders")
             .then(response => response.json())
             .then(data => {
                 this.setState({ orders: data, isLoading: false });
-            })
+            });
     }
 
     handleOpenModal() {
@@ -32,6 +37,10 @@ export class OrderList extends React.Component {
 
     handleCloseModal() {
         this.setState({ showCreateModal: false });
+    }
+
+    handleUpdateTable () {
+        this.refreshTable();
     }
 
     render() {
@@ -79,6 +88,7 @@ export class OrderList extends React.Component {
                 <OrderModal
                     isOpen={this.state.showCreateModal}
                     onCloseModal={this.handleCloseModal}
+                    onUpdateTable={this.handleUpdateTable}
                 />
             </React.Fragment>
         );

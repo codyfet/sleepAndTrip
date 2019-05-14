@@ -10,7 +10,9 @@ export class OrderModal extends React.Component {
                 onRequestClose={this.props.onCloseModal}
                 contentLabel="Example Modal"
             >
-                <OrderForm />
+                <OrderForm
+                    onSubmitCallback={this.props.onUpdateTable}
+                />
                 <button onClick={this.props.onCloseModal}>close</button>
             </Modal>
         );
