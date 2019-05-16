@@ -31,4 +31,8 @@ public class Cover {
     @Setter
     @Column(name = "IS_IN_STORE")
     private Boolean isInStore;
+
+    @Getter
+    @Setter
+    private Float cost;
 }

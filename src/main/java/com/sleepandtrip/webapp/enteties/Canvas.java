@@ -41,8 +41,8 @@ public class Canvas {
 
     @Getter
     @Setter
-    @Column(name = "CANVAS_COST")
-    private Float canvasCost;
+    @Column(name = "COST")
+    private Float cost;
 
     @Getter
     @Setter
