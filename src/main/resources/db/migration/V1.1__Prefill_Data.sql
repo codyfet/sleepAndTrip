@@ -23,24 +23,24 @@ insert into CANVAS (NAME, COMPOSITION, PREVIEW_URL, VIEW_URL, COST, IS_ARCHIEVED
 values ('Печатница', 'Хлопок 100%', 'first.jpg', 'bigfirst.jpg', 300, false, true);
 
 --- Заполнение таблицы заказов
-insert into ORDERS (ADRESS, DELIVERYTYPEID, ORDERSTATE, SUMM, HAVEPATCH, ORDER_DATE, CANVASID, PHONE )
-values ('г.Тверь, пр-кт Ленина, д.10', 1, 'DELIVERED', 50.0, TRUE, to_date('dd.mm.yyyy','01.01.2000'), 1, '79201628841');
-insert into ORDERS (ADRESS, DELIVERYTYPEID, ORDERSTATE, SUMM, HAVEPATCH, ORDER_DATE, PHONE )
-values ('г.Тверь, ул.Нагорная', 1, 'PROCESS', 150.0, FALSE, to_date('dd.mm.yyyy','01.01.2000'), '79201628841');
+insert into ORDERS (ADRESS, DELIVERYTYPEID, ORDERSTATE, SUMM, HAVEPATCH, ORDER_DATE, CANVASID, PHONE , RECIPIENT)
+values ('г.Тверь, пр-кт Ленина, д.10', 1, 'DELIVERED', 50.0, TRUE, to_date('dd.mm.yyyy','01.01.2000'), 1, '780080808080', 'Крылов Александр Геннадьевич');
+insert into ORDERS (ADRESS, DELIVERYTYPEID, ORDERSTATE, SUMM, HAVEPATCH, ORDER_DATE, PHONE ,RECIPIENT)
+values ('г.Тверь, ул.Нагорная', 1, 'PROCESS', 150.0, FALSE, to_date('dd.mm.yyyy','01.01.2000'), '780080808080', 'Семёнов Илья Игоревич');
 
 
-insert into DELIVERY (NAME, PHONE, IS_ACTIVE) VALUES ('Почта России','+7(4822)39-41-91',TRUE);
-insert into DELIVERY (NAME, PHONE, IS_ACTIVE) VALUES ('DHL','+7(4822)555-555',TRUE);
-insert into DELIVERY (NAME, PHONE, IS_ACTIVE) VALUES ('DPD','8(800)777-3333',TRUE);
-insert into DELIVERY (NAME, PHONE, IS_ACTIVE) VALUES ('Major express','8(920)454-4288',TRUE);
+insert into DELIVERY (NAME, PHONE, IS_ACTIVE, MINIMAL_COST) VALUES ('Почта России','+7(4822)39-41-91',TRUE, 100);
+insert into DELIVERY (NAME, PHONE, IS_ACTIVE, MINIMAL_COST) VALUES ('DHL','+7(4822)555-555',TRUE, 100);
+insert into DELIVERY (NAME, PHONE, IS_ACTIVE, MINIMAL_COST) VALUES ('DPD','8(800)777-3333',TRUE, 100);
+insert into DELIVERY (NAME, PHONE, IS_ACTIVE, MINIMAL_COST) VALUES ('Major express','8(920)454-4288',TRUE, 100);
 
-insert into COVER (NAME, DESCRIPTION, IS_IN_STORE) VALUES ('Деревянный кейс', 'Отличный кейс для человека с большим количеством полочек', true);
-insert into COVER (NAME, DESCRIPTION, IS_IN_STORE) VALUES ('Тряпичный чехол', 'Хорошо подходит для путешествий', true);
-insert into COVER (NAME, DESCRIPTION, IS_IN_STORE) VALUES ('Бумажный чехол', 'Сохранит запах саше надолго', true);
+insert into COVER (NAME, DESCRIPTION, IS_IN_STORE, COST) VALUES ('Деревянный кейс', 'Отличный кейс для человека с большим количеством полочек', true, 500);
+insert into COVER (NAME, DESCRIPTION, IS_IN_STORE, COST) VALUES ('Тряпичный чехол', 'Хорошо подходит для путешествий', true, 300);
+insert into COVER (NAME, DESCRIPTION, IS_IN_STORE, COST) VALUES ('Бумажный чехол', 'Сохранит запах саше надолго', true, 100);
 
-insert into SACHE (NAME, DESCRIPTION, IS_IN_STORE) VALUES ('Лаванда', 'успокоит', TRUE);
-insert into SACHE (NAME, DESCRIPTION, IS_IN_STORE) VALUES ('Бадьян', 'восточный колорит', true);
-insert into SACHE (NAME, DESCRIPTION, IS_IN_STORE) VALUES ('Душица', 'не оставит равнодушных', true);
-insert into SACHE (NAME, DESCRIPTION, IS_IN_STORE) VALUES ('Лемонграс', 'взбодрится', true);
-insert into SACHE (NAME, DESCRIPTION, IS_IN_STORE) VALUES ('Банан', 'ну тут и так всё понятно', true);
+insert into SACHE (NAME, DESCRIPTION, IS_IN_STORE, COST) VALUES ('Лаванда', 'успокоит', TRUE, 150);
+insert into SACHE (NAME, DESCRIPTION, IS_IN_STORE, COST) VALUES ('Бадьян', 'восточный колорит', true, 150);
+insert into SACHE (NAME, DESCRIPTION, IS_IN_STORE, COST) VALUES ('Душица', 'не оставит равнодушных', true, 150);
+insert into SACHE (NAME, DESCRIPTION, IS_IN_STORE, COST) VALUES ('Лемонграс', 'взбодрится', true, 150);
+insert into SACHE (NAME, DESCRIPTION, IS_IN_STORE, COST) VALUES ('Банан', 'ну тут и так всё понятно', true, 150);
 

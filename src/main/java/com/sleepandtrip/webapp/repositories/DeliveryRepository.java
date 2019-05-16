@@ -7,5 +7,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RepositoryRestResource(collectionResourceRel = "delivery", path = "/delivery")
-public interface DeliveryRepository extends CrudRepository<Delivery, Long> {
+public interface DeliveryRepository extends CrudRepository <Delivery, Long> {
+
 }

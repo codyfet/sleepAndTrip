@@ -8,8 +8,9 @@ export class OrderForm extends React.Component {
         // this.handleSubmit = this.submitByButton();
         this.state = {
             order: {
-                adress: '',
+                recipient: '',
                 phone: '',
+                adress: '',
                 deliveryType: '',
                 comment: '',
                 cover: '',
@@ -109,6 +110,7 @@ export class OrderForm extends React.Component {
             .then(response =>response.json())
             .then(response => {
                 this.setState({order: {
+                        recipient: '',
                         adress: '',
                         phone: '',
                         deliveryType: '',
@@ -137,15 +139,20 @@ export class OrderForm extends React.Component {
 
         return (
             <form>
+                <p>Получатель ФИО:
+                    <input name='recipient' onChange={this.handleChange} value={this.state.order.recipient}/>
+                </p>
                 <p>Адрес доствки:
                     <input name='adress' onChange={this.handleChange} value={this.state.order.adress}/>
                 </p>
+
                 <p>Телефон:
                     <input type='tel' name='phone' onChange={this.handleChange} value={this.state.order.phone}/>
                 </p>
                 <p>Вид доставки:
                     <select name='deliveryType' onChange={this.handleChange} value={this.state.order.deliveryType}>
                         <option value=""></option>
+                        {/*TODO: Сделать метод, который возьмёт на вход массив и преобразует в список <option>*/}
                         {deliveryList.map((delivery) =>
                             <option key={delivery.id} value={delivery.id}>
                                 {delivery.name}

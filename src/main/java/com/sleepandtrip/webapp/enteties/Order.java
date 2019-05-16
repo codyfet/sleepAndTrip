@@ -3,11 +3,9 @@ package com.sleepandtrip.webapp.enteties;
 
 import com.sleepandtrip.webapp.enteties.enums.OrderState;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.beans.factory.annotation.Required;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,6 +17,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
 
+
+/**
+ * Класс определяет сущность заказа.
+ *
+ *
+ */
 
 @Entity
 @Table(name = "ORDERS")
@@ -33,21 +37,24 @@ public class Order {
 
     @Getter
     @Setter
+    private String Recipient; //TODO: Удалить на этапе дипломной работы
+
+    @Getter
+    @Setter
+    @Column(name="PHONE")
+    @Length(max=13,min=6)
+    private String phone; //TODO: Move to OrderToPerson entity on STAGE 2
+
+    @Getter
+    @Setter
     @Length(max = 255)
     @Column(nullable = false)
-
     private String adress; //TODO: Move to OrderToPerson entity on STAGE 2
 
     @Getter
     @Setter
     @Column(name = "DELIVERYTYPEID", nullable = false)
     private Long deliveryTypeId;
-
-    @Getter
-    @Setter
-    @Column(name = "TRACKNUMBER")
-    @Length(max = 100)
-    private String trackNumber;
 
     @Getter
     @Setter
@@ -87,12 +94,6 @@ public class Order {
 
     @Getter
     @Setter
-    @Length(max = 255)
-    @Column(name = "LETTERINGURL")
-    private String letteringURL;
-
-    @Getter
-    @Setter
     @Column(name="ORDER_DATE",nullable = false )
     private Date orderDate;
 
@@ -103,9 +104,10 @@ public class Order {
 
     @Getter
     @Setter
-    @Column(name="PHONE")
-    @Length(max=13,min=6)
-    private String phone;
+    @Column(name = "TRACKNUMBER")
+    @Length(max = 100)
+    private String trackNumber;
+
 
 //    @Getter
 //    @Setter
@@ -116,8 +118,12 @@ public class Order {
 //    @Setter
 //    @Column(name = "FEEDBACKCOMMENT")
 //    @Length(max = 255)
-
 //    private String feedbackComment;
+//    @Getter
+//    @Setter
+//    @Length(max = 255)
+//    @Column(name = "LETTERINGURL")
+//    private String letteringURL;
 
 }
 
