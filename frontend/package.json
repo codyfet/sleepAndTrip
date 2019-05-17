@@ -15,7 +15,9 @@
     "react-dom": "^16.8.6",
     "react-modal": "^3.8.1",
     "react-table": "^6.10.0",
-    "rest": "^1.3.2"
+    "rest": "^1.3.2",
+    "react-router-dom": "^5.0.0"
+
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
