@@ -1,3 +1,4 @@
+/*   --TODO: Do i need this table? I think that table helps when user will delete himself from system.
 CREATE TABLE PERSON
 (
     ID           bigint PRIMARY KEY AUTO_INCREMENT,
@@ -7,6 +8,8 @@ CREATE TABLE PERSON
     EMAIL        varchar(255) null,
     PREFERADRESS varchar(255) null
 );
+
+*/
 
 CREATE TABLE ORDERS
 (
@@ -32,6 +35,7 @@ CREATE TABLE ORDERS
 
 );
 
+/*
 CREATE TABLE PERSONORDERS --TODO: Do i need this table? I think that table helps when user will delete himself from system.
 (
     ID       bigint PRIMARY KEY AUTO_INCREMENT,
@@ -41,6 +45,7 @@ CREATE TABLE PERSONORDERS --TODO: Do i need this table? I think that table helps
 --     TRACKNUMBER varchar(100) null,
 --     PHONE varchar(13) null
 );
+*/
 
 CREATE TABLE CANVAS
 (

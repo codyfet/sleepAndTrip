@@ -1,15 +1,20 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {OrderList} from "./components/OrderList";
-import {OrderForm} from "./components/OrderForm";
+import {App} from "./components/App";
+import {BrowserRouter} from 'react-router-dom';
 
-const App = () => (
-    <OrderList/>
-);
 
 ReactDOM.render(
-    <App/>,
-    document.getElementById("app")
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>,
+    document.getElementById("root")
 );
+
 module.hot.accept();
+
+
+
+
+
 

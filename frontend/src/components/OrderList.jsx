@@ -3,6 +3,7 @@ import ReactTable from 'react-table';
 import { API_URL } from "../app-config";
 import { OrderModal } from "./OrderModal";
 import 'react-table/react-table.css';
+
 export class OrderList extends React.Component {
 
     constructor(props) {
