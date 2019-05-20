@@ -60,15 +60,22 @@ export class OrderList extends React.Component {
                 Header: 'Статус',
                 accessor: 'orderState'
             }, {
-                Header: 'Идентификатор материала',
-                accessor: 'canvasId'
+                id: 'canvasName',
+                Header: 'Материал',
+                accessor: d => {if (d.sache == null) {return "нет"} else {return d.canvas.name}}
             }, {
+                id : 'sacheName',
                 Header: 'Идентификатор саше',
-                accessor: 'sacheId'
+                accessor: d => {if (d.sache == null) {return "нет"} else {return d.sache.name}}
             }, {
+                id: 'coverName',
+                Header: 'Чехол',
+                accessor: d => {if (d.cover == null) {return "нет"} else { return d.cover.name}}
+
+            },{
+                id: 'needPath?',
                 Header: 'Нужен патч?',
-                accessor: 'havePatch',
-                aggregated: true
+                accessor: d => {if (d.havePatch === true) {return "да"} else {return "нет"}}
             }, {
                 Header: 'Телефон',
                 accessor: 'phone'

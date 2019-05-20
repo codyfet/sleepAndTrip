@@ -51,10 +51,16 @@ public class OrderController {
         this.coverRepository = coverRepository;
     }
 
-    @GetMapping("/getAllOrders")
+    @GetMapping(path = "/getAllOrders")
     @CrossOrigin(origins = "http://localhost:8081")
     public List<Order> getAllOrders() {
         return (List<Order>) orderRepository.findAll();
+    }
+
+    @GetMapping(path = "/filteredByState")
+    @CrossOrigin(origins = "http://localhost:8081")
+    public List<Order> getFilteredOrders(String state) {
+        return orderRepository.findByState(OrderState.valueOf(state));
     }
 
     @PostMapping("/newOrder")
@@ -78,12 +84,13 @@ public class OrderController {
         newOrder.setPhone(phone);
         newOrder.setDeliveryTypeId(deliveryTypeId);
         newOrder.setComment(comment);
-        newOrder.setCanvasId(canvasId);
-        newOrder.setSacheId(sacheId);
+        if (canvasId != null) newOrder.setCanvas(canvasRepository.getOne(canvasId));
+        if (sacheId != null) newOrder.setSache(sacheRepository.getOne(sacheId));
         newOrder.setHavePatch(havePatch);
-        newOrder.setCoverId(coverId);
+        if (coverId != null) newOrder.setCover(coverRepository.getOne(coverId));
         newOrder.setOrderDate(new Date());
         newOrder.setOrderState(OrderState.CREATED);
+        newOrder.setPayed(false);
 
 
         Float summ = 1000.0f;
@@ -93,7 +100,6 @@ public class OrderController {
             summ += delivery.map(Delivery::getMinimalCost)
                     .orElseThrow(() -> new RuntimeException("Стоимость доставки не указана"));
         }
-
 
         if (canvasId != null) {
             Optional<Canvas> canvas = canvasRepository.findById(canvasId);
@@ -119,6 +125,20 @@ public class OrderController {
 
         return orderRepository.save(newOrder);
     }
+}
 
+class ViewOrder extends Order {
+
+    private String delivery;
+    private String sache;
+    private String canvas;
+    private String cover;
+
+    public ViewOrder(String delivery, String sache, String canvas, String cover) {
+        this.canvas = canvas;
+        this.sache = sache;
+        this.cover = cover;
+        this.delivery = delivery;
+    }
 
 }

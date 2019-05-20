@@ -14,6 +14,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.util.Date;
 
@@ -32,7 +34,6 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
-    @Setter
     private Long id;
 
     @Getter
@@ -53,7 +54,7 @@ public class Order {
 
     @Getter
     @Setter
-    @Column(name = "DELIVERYTYPEID", nullable = false)
+    @Column(name = "DELIVERYTYPE_ID", nullable = false)
     private Long deliveryTypeId;
 
     @Getter
@@ -72,20 +73,43 @@ public class Order {
     //@Column(nullable = false)
     private Float summ;
 
-    @Getter
-    @Setter
-    @Column(name = "CANVASID")
-    private Long canvasId;
+    @ManyToOne
+    @JoinColumn(name ="CANVAS_ID")
+    private Canvas canvas;
 
-    @Getter
-    @Setter
-    @Column(name = "SACHEID")
-    private Long sacheId;
+    public Canvas getCanvas() {
+        return canvas;
+    }
 
-    @Getter
-    @Setter
-    @Column(name = "COVERID")
-    private Long coverId;
+    public void setCanvas(Canvas canvas) {
+        this.canvas = canvas;
+    }
+
+    @ManyToOne
+    @JoinColumn(name ="SACHE_ID")
+    private Sache sache;
+
+    public Sache getSache() {
+        return sache;
+    }
+
+    public void setSache(Sache sache) {
+        this.sache = sache;
+    }
+
+
+    @ManyToOne
+    @JoinColumn(name ="COVER_ID")
+    private Cover cover;
+
+    public Cover getCover() {
+        return cover;
+    }
+
+    public void setCover(Cover cover) {
+        this.cover = cover;
+    }
+
 
     @Getter
     @Setter
@@ -101,6 +125,15 @@ public class Order {
     @Setter
     @Column(name="DONE_DATE")
     private String orderDoneDate;
+
+    @Getter
+    @Setter
+    private Boolean payed;
+
+    @Getter
+    @Setter
+    @Length(max= 150, min = 4)
+    private String creator;
 
     @Getter
     @Setter

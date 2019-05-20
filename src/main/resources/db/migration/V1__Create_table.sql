@@ -17,16 +17,18 @@ CREATE TABLE ORDERS
     RECIPIENT      varchar(150) not null, -- TODO: Move field to PERSON table on STAGE 2
     PHONE          varchar(13)  null,     -- TODO: Move field to PERSON table on STAGE 2
     ADRESS         varchar(255) not null, -- TODO: Move field to PERSONORDERS table on STAGE 2
-    DELIVERYTYPEID bigint       null,
-    CANVASID       bigint       null,
-    SACHEID        bigint       null,
-    COVERID        bigint       null,
+    DELIVERYTYPE_ID bigint       null,
+    CANVAS_ID       bigint       null,
+    SACHE_ID        bigint       null,
+    COVER_ID        bigint       null,
     ORDERSTATE     varchar(15)  null,
     COMMENT        varchar(150) null,
     SUMM           float        null,
     HAVEPATCH      boolean      null,
     ORDER_DATE     date         null,
     DONE_DATE      date         null,
+    PAYED          boolean      not null,
+    CREATOR        varchar(150) null,
     TRACKNUMBER    varchar(100) null      -- TODO: Move field to PERSONORDERS table on STAGE 2
 
 --  FEEDBACKRANGE   int(1)       null, -- TODO: Make on STAGE 2
