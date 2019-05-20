@@ -27,6 +27,8 @@ CREATE TABLE ORDERS
     HAVEPATCH      boolean      null,
     ORDER_DATE     date         null,
     DONE_DATE      date         null,
+    PAYED          boolean      not null,
+    CREATOR        varchar(150) null,
     TRACKNUMBER    varchar(100) null      -- TODO: Move field to PERSONORDERS table on STAGE 2
 
 --  FEEDBACKRANGE   int(1)       null, -- TODO: Make on STAGE 2

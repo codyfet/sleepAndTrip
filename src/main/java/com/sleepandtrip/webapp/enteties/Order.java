@@ -104,6 +104,15 @@ public class Order {
 
     @Getter
     @Setter
+    private Boolean payed;
+
+    @Getter
+    @Setter
+    @Length(max= 150, min = 4)
+    private String creator;
+
+    @Getter
+    @Setter
     @Column(name = "TRACKNUMBER")
     @Length(max = 100)
     private String trackNumber;
