@@ -23,10 +23,10 @@ insert into CANVAS (NAME, COMPOSITION, PREVIEW_URL, VIEW_URL, COST, IS_ARCHIEVED
 values ('Печатница', 'Хлопок 100%', 'first.jpg', 'bigfirst.jpg', 300, false, true);
 
 --- Заполнение таблицы заказов
-insert into ORDERS (ADRESS, DELIVERYTYPEID, ORDERSTATE, SUMM, HAVEPATCH, ORDER_DATE, CANVASID, PHONE , RECIPIENT, PAYED)
-values ('г.Тверь, пр-кт Ленина, д.10', 1, 'DELIVERED', 50.0, TRUE, to_date('dd.mm.yyyy','01.01.2000'), 1, '780080808080', 'Крылов Александр Геннадьевич', TRUE);
-insert into ORDERS (ADRESS, DELIVERYTYPEID, ORDERSTATE, SUMM, HAVEPATCH, ORDER_DATE, PHONE ,RECIPIENT, PAYED)
-values ('г.Тверь, ул.Нагорная', 1, 'PROCESS', 150.0, FALSE, to_date('dd.mm.yyyy','01.01.2000'), '780080808080', 'Семёнов Илья Игоревич', FALSE);
+-- insert into ORDERS (ADRESS, DELIVERYTYPE_ID, ORDERSTATE, SUMM, HAVEPATCH, ORDER_DATE, CANVAS_ID, PHONE , RECIPIENT, PAYED)
+-- values ('г.Тверь, пр-кт Ленина, д.10', 1, 'DELIVERED', 50.0, TRUE, to_date('dd.mm.yyyy','01.01.2000'), 1, '780080808080', 'Крылов Александр Геннадьевич', TRUE);
+-- insert into ORDERS (ADRESS, DELIVERYTYPE_ID, ORDERSTATE, SUMM, HAVEPATCH, ORDER_DATE, PHONE ,RECIPIENT, PAYED)
+-- values ('г.Тверь, ул.Нагорная', 1, 'PROCESS', 150.0, FALSE, to_date('dd.mm.yyyy','01.01.2000'), '780080808080', 'Семёнов Илья Игоревич', FALSE);
 
 
 insert into DELIVERY (NAME, PHONE, IS_ACTIVE, MINIMAL_COST) VALUES ('Почта России','+7(4822)39-41-91',TRUE, 100);
