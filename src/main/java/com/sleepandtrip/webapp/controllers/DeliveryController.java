@@ -25,8 +25,6 @@ public class DeliveryController {
 
     @GetMapping(path = "/getDelivery")
     public List<Delivery> getDelivery(){
-
-
         return deliveryRepository.findByActivity(true);
     }
 
@@ -35,8 +33,6 @@ public class DeliveryController {
     public ResponseEntity newDelivery(
             @RequestBody Delivery newDelivery
     ){
-        //Delivery delivery = new Delivery();
-        //TODO: Define delivery from body here
         deliveryRepository.save(newDelivery);
         return ResponseEntity.ok(HttpStatus.OK);
     }
@@ -44,8 +40,6 @@ public class DeliveryController {
     @PutMapping(path = "/editDelivery")
     @CrossOrigin(origins = "http://localhost:8081")
     public ResponseEntity editDelivery(@RequestBody Delivery delivery){
-
-
         deliveryRepository.save(delivery);
         return ResponseEntity.ok(HttpStatus.OK);
     }

@@ -84,12 +84,13 @@ public class OrderController {
         newOrder.setPhone(phone);
         newOrder.setDeliveryTypeId(deliveryTypeId);
         newOrder.setComment(comment);
-        newOrder.setCanvasId(canvasId);
-        newOrder.setSacheId(sacheId);
+        if (canvasId != null) newOrder.setCanvas(canvasRepository.getOne(canvasId));
+        if (sacheId != null) newOrder.setSache(sacheRepository.getOne(sacheId));
         newOrder.setHavePatch(havePatch);
-        newOrder.setCoverId(coverId);
+        if (coverId != null) newOrder.setCover(coverRepository.getOne(coverId));
         newOrder.setOrderDate(new Date());
         newOrder.setOrderState(OrderState.CREATED);
+        newOrder.setPayed(false);
 
 
         Float summ = 1000.0f;
