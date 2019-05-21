@@ -12,6 +12,9 @@ import com.sleepandtrip.webapp.repositories.DeliveryRepository;
 import com.sleepandtrip.webapp.repositories.OrderRepository;
 import com.sleepandtrip.webapp.repositories.SacheRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,9 +66,10 @@ public class OrderController {
         return orderRepository.findByState(OrderState.valueOf(state));
     }
 
+//    @Transactional
     @PostMapping("/newOrder")
     @CrossOrigin(origins = "http://localhost:8081")
-    public Order createOrder(
+    public ResponseEntity createOrder(
             @RequestParam(value = "recipient") String recipient,
             @RequestParam(value = "adress") String adress,
             @RequestParam(value = "phone") String phone,
@@ -84,10 +88,7 @@ public class OrderController {
         newOrder.setPhone(phone);
         newOrder.setDeliveryTypeId(deliveryTypeId);
         newOrder.setComment(comment);
-        if (canvasId != null) newOrder.setCanvas(canvasRepository.getOne(canvasId));
-        if (sacheId != null) newOrder.setSache(sacheRepository.getOne(sacheId));
         newOrder.setHavePatch(havePatch);
-        if (coverId != null) newOrder.setCover(coverRepository.getOne(coverId));
         newOrder.setOrderDate(new Date());
         newOrder.setOrderState(OrderState.CREATED);
         newOrder.setPayed(false);
@@ -105,40 +106,30 @@ public class OrderController {
             Optional<Canvas> canvas = canvasRepository.findById(canvasId);
             summ += canvas.map(Canvas::getCost)
                     .orElseThrow(() -> new RuntimeException("Стоимость материала не указана"));
+            newOrder.setCanvas(canvasRepository.getOne(canvasId));
         }
 
         if (sacheId != null) {
             Optional<Sache> sache = sacheRepository.findById(sacheId);
             summ += sache.map(Sache::getCost)
                     .orElseThrow(() -> new RuntimeException("Стоимость саше не указана"));
+            newOrder.setSache(sacheRepository.getOne(sacheId));
         }
 
         if (coverId != null) {
             Optional<Cover> cover = coverRepository.findById(coverId);
             summ += cover.map(Cover::getCost)
                     .orElseThrow(() -> new RuntimeException("Стоимость чехла не указана"));
+            newOrder.setCover(coverRepository.getOne(coverId));
         }
 
         if (havePatch) summ += PATCH_COST; // Если нужен патч, то прибавляем его стоимость к заказу
 
         newOrder.setSumm(summ);
+        orderRepository.save(newOrder);
 
-        return orderRepository.save(newOrder);
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 }
 
-class ViewOrder extends Order {
 
-    private String delivery;
-    private String sache;
-    private String canvas;
-    private String cover;
-
-    public ViewOrder(String delivery, String sache, String canvas, String cover) {
-        this.canvas = canvas;
-        this.sache = sache;
-        this.cover = cover;
-        this.delivery = delivery;
-    }
-
-}

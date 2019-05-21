@@ -54,8 +54,8 @@ CREATE TABLE CANVAS
     ID           bigint PRIMARY KEY AUTO_INCREMENT,
     NAME         varchar(32)  not null,
     COMPOSITION  varchar(100) null,
-    PREVIEW_URL  varchar(255) not null,
-    VIEW_URL     varchar(255) not null,
+    PREVIEW_URL  varchar(255) null,
+    VIEW_URL     varchar(255) null,
     COST         float        not null,
     IS_ARCHIEVED boolean      not null,
     IS_IN_STORE  boolean      not null

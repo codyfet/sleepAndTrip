@@ -1,6 +1,7 @@
 import React from 'react';
 import {Header} from "./Header";
 import {Main} from "./Main";
+import {Button} from 'react-bootstrap';
 
 
 export const App = () => {
@@ -9,6 +10,7 @@ export const App = () => {
 
             <Header />
             <Main />
+
 
         </React.Fragment>
 )

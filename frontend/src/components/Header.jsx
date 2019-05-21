@@ -10,6 +10,7 @@ export const Header = () => {
             <li><Link to='/sache'>саше</Link></li>
             <li><Link to='/cover'>чехлы</Link></li>
             <li><Link to='/delivery'>доставка</Link></li>
+            <li><Link to='/newCanvas'>Новый материал</Link></li>
         </ul>
     )
 }

@@ -8,6 +8,7 @@ import {Cover} from "./Cover";
 import {Delivery} from "./Delivery";
 import {Home} from "./Home";
 import {Canvas} from "./Canvas";
+import {CanvasForm} from "./objectsForms/CanvasForm";
 
 export const Main = () => {
     return (
@@ -20,6 +21,7 @@ export const Main = () => {
                 <Route path='/cover' component={Cover} />
                 <Route path='/delivery' component={Delivery} />
                 <Route path='/newOrder' component={OrderModal} />
+                <Route path="/newCanvas" component={CanvasForm} />
             </Switch>
         </div>
     )
