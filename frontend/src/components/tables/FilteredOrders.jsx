@@ -28,12 +28,12 @@ export class DeliveryList extends React.Component {
     componentDidMount() {
 //        const rowNames =
 //        { "phone":"Телефон",
-//          "adress": "г.Тверь, пр-кт Ленина, д.10"
-//          "deliveryType": "Вид доставки"
-//          "orderDate": ""
-//
-//          "recipient": "Крылов Александр Геннадьевич"
-//          "summ": 50         "trackNumber": null
+//          "adress": "Адрес доставки",
+//          "deliveryType": "Вид доставки",
+//          "orderDate": "Дата заказа"
+//          "recipient": "Получатель"
+//          "summ": "сумма"
+//          "trackNumber": "номер посылки"
 //
 //        };
         const myInint = {
