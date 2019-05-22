@@ -31,7 +31,7 @@ export class OrderForm extends React.Component {
     }
 
     componentDidMount() {
-        var myInint = {
+        const myInint = {
             method: 'GET',
             headers: new Headers(),
             mode: 'cors',
@@ -152,7 +152,6 @@ export class OrderForm extends React.Component {
                 <p>Вид доставки:
                     <select name='deliveryType' onChange={this.handleChange} value={this.state.order.deliveryType}>
                         <option value=""></option>
-                        {/*TODO: Сделать метод, который возьмёт на вход массив и преобразует в список <option>*/}
                         {deliveryList.map((delivery) =>
                             <option key={delivery.id} value={delivery.id}>
                                 {delivery.name}

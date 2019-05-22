@@ -1,7 +1,8 @@
 import React from "react";
 import ReactTable from 'react-table';
-import { API_URL } from "../app-config";
-import { OrderModal } from "./OrderModal";
+import { API_URL } from "../../app-config";
+import { OrderModal } from "../OrderModal";
+import {Button} from "react-bootstrap";
 import 'react-table/react-table.css';
 
 export class OrderList extends React.Component {
@@ -91,7 +92,7 @@ export class OrderList extends React.Component {
                     showPaginationBottom={false}
                 />
 
-                <button onClick={this.handleOpenModal}>Создать</button>
+                <Button variant="outline-primary" onClick={this.handleOpenModal}>Создать</Button>
 
                 <OrderModal
                     isOpen={this.state.showCreateModal}

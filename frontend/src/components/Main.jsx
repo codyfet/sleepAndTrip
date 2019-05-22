@@ -1,13 +1,17 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 
-import {OrderList} from "./OrderList";
+import {OrderList} from "./tables/OrderList";
 import {OrderModal} from "./OrderModal";
-import {Sache} from "./Sache";
 import {Cover} from "./Cover";
-import {Delivery} from "./Delivery";
 import {Home} from "./Home";
-import {Canvas} from "./Canvas";
+import {DeliveryList} from "./tables/DeliveryList";
+import {CanvasForm} from "./objectsForms/CanvasForm";
+import {MaterialList} from "./tables/MaterialList";
+import {DeliveryForm} from './objectsForms/DeliveryForm'
+import {SacheList} from "./tables/SacheList";
+import {CoverList} from "./tables/CovList";
+
 
 export const Main = () => {
     return (
@@ -15,11 +19,13 @@ export const Main = () => {
             <Switch>
                 <Route exact path='/' component={Home} />
                 <Route path='/orders' component={OrderList} />
-                <Route path='/canvas' component={Canvas}/>
-                <Route path='/sache' component={Sache} />
-                <Route path='/cover' component={Cover} />
-                <Route path='/delivery' component={Delivery} />
+                <Route path='/canvas' component={MaterialList}/>
+                <Route path='/sache' component={SacheList} />
+                <Route path='/cover' component={CoverList} />
+                <Route path='/delivery' component={DeliveryList} />
                 <Route path='/newOrder' component={OrderModal} />
+                <Route path="/newCanvas" component={CanvasForm} />
+                <Route path='/newDelivery' component={DeliveryForm}/>
             </Switch>
         </div>
     )

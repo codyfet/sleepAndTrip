@@ -34,6 +34,11 @@ public class Canvas {
 
     @Getter
     @Setter
+    @Length(max=100)
+    private String composition;
+
+    @Getter
+    @Setter
     @Length(max = 255)
     @Column(name = "CANVAS_PREVIEW_URL") //TODO: Make column Canvas preview URL nullable = false
     private String canvasPreviewURL;
@@ -52,7 +57,7 @@ public class Canvas {
     @Getter
     @Setter
     @Column(name = "IS_ARCHIEVED", nullable = false)
-    private Boolean isArchhieved;
+    private Boolean isArchieved;
 
     @Getter
     @Setter
