@@ -3,19 +3,18 @@ import {Button, ButtonToolbar, Col, Form, Row} from 'react-bootstrap';
 import {API_URL} from "../../app-config";
 import {Redirect} from 'react-router-dom';
 
-export class CanvasForm extends React.Component {
+export class DeliveryForm extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            //id : '',
             name: '',
-            cost: 100.0,
+            minimalCost: 100,
+            phone: '',
+            isActive: false,
+            //id : '',
             //previewurl: '',
             //viewurl: '',
-            composition: '',
-            isInStore: false,
-            isArchieved: false,
             redirectToLogin: false
         };
 
@@ -29,7 +28,7 @@ export class CanvasForm extends React.Component {
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const id = target.id;
 
-        if (id === "cost") {
+        if (id == "minimalCost") {
             if (!parseFloat(value)) {
                 target.isValid = false;
             } else {
@@ -55,10 +54,10 @@ export class CanvasForm extends React.Component {
             body: body
         };
 
-        fetch(API_URL + '/newCanvas', myInit)
+        fetch(API_URL + '/newDelivery', myInit)
             .then(response => response.json())
             .then(response => {
-                this.setState({name: '', cost: '', composition: '', isInStore: false, isArchieved: false});
+                this.setState({name: '', minimalCost: 100, phone: '', isActive: false});
                 console.log(response);
                 if (response === "OK") {
                     alert('Запись создана');
@@ -78,7 +77,7 @@ export class CanvasForm extends React.Component {
 
     handleCacel(event) {
         console.log('Cancel pressed')
-        this.setState({            redirectToLogin: true})
+        this.setState({redirectToLogin: true})
     }
 
     render() {
@@ -86,41 +85,39 @@ export class CanvasForm extends React.Component {
             <React.Fragment>
                 {
                     this.state.redirectToLogin ?
-                        <Redirect to="/canvas" push/> :
+                        <Redirect to="/delivery" push/> :
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Group>
                                 <Row>
                                     <Col>
-                                        <Form.Label>Material name</Form.Label>
+                                        <Form.Label>Название доставки</Form.Label>
                                         <Form.Control type="text" id='name' onChange={this.handleChange}/>
+                                        <Form.Label>Активна ?</Form.Label>
+                                        <Form.Check id='isActive' onChange={this.handleChange}/>
                                     </Col>
 
                                     <Col>
-                                        <Form.Label>Composition</Form.Label>
-                                        <Form.Control type="text" id='composition' onChange={this.handleChange}/>
+                                        <Form.Label>Телефон</Form.Label>
+                                        <Form.Control type="text" id='phone' onChange={this.handleChange}/>
+                                        <Form.Label>Минимальная стоимость Cost</Form.Label>
+                                        <Form.Control type="text" id='minimalCost' onChange={this.handleChange}/>
                                     </Col>
                                 </Row>
                             </Form.Group>
-
-                            <Form.Label>Cost</Form.Label>
-                            <Form.Control type="text" id='cost' onChange={this.handleChange}/>
-
                             <Form.Group>
-                        <span>
-                        <Form.Label>In archieve?</Form.Label>
-                        <Form.Check id='isArchieved' onChange={this.handleChange}/>
-                        </span>
+                                <Row>
+                                    <Col>
 
-                                <span>
-                        <Form.Label>In Store?</Form.Label>
-                        <Form.Check id='isInStore' onChange={this.handleChange}/>
-                    </span>
+                                    </Col>
+
+                                    <Col>
+                                        <ButtonToolbar>
+                                            <Button variant="primary" type='submit'>Создать</Button>
+                                            <Button variant="link" onClick={this.handleCacel}>Отмена</Button>
+                                        </ButtonToolbar>
+                                    </Col>
+                                </Row>
                             </Form.Group>
-
-                            <ButtonToolbar>
-                                <Button variant="primary" type='submit'>Primary</Button>
-                                <Button variant="link" onClick={this.handleCacel}>Cancel</Button>
-                            </ButtonToolbar>
                         </Form>
                 }
             </React.Fragment>);
