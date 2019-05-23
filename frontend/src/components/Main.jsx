@@ -14,20 +14,20 @@ import {SacheForm} from './objectsForms/SacheForm'
 import {CoverForm} from './objectsForms/CoverForm'
 import {SacheList} from "./tables/SacheList";
 import {CoverList} from "./tables/CovList";
+import {OrderForm} from "./OrderForm";
 
 
 export const Main = () => {
     return (
         <div>
             <Switch>
-                <Route exact path='/' component={Home} />
-                <Route path='/orders' component={OrderList} />
+                <Route path='/orders' component={FilteredOrders} />
                 <Route path='/filteredOrders' component={FilteredOrders} />
                 <Route path='/canvas' component={MaterialList}/>
                 <Route path='/sache' component={SacheList} />
                 <Route path='/cover' component={CoverList} />
                 <Route path='/delivery' component={DeliveryList} />
-                <Route path='/newOrder' component={OrderModal} />
+                <Route path='/newOrder' component={OrderForm} />
                 <Route path="/newCanvas" component={CanvasForm} />
                 <Route path='/newDelivery' component={DeliveryForm}/>
                 <Route path='/newSache' component={SacheForm}/>

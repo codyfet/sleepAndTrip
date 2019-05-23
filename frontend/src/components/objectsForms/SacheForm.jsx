@@ -101,7 +101,7 @@ export class SacheForm extends React.Component {
                                 </Row>
                             </Form.Group>
 
-                            <Form.Label>Cost</Form.Label>
+                            <Form.Label>Цена</Form.Label>
                             <Form.Control type="text" id='cost' onChange={this.handleChange}/>
 
                             <Form.Group>

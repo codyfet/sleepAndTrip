@@ -99,17 +99,13 @@ export class DeliveryForm extends React.Component {
                                     <Col>
                                         <Form.Label>Телефон</Form.Label>
                                         <Form.Control type="text" id='phone' onChange={this.handleChange}/>
-                                        <Form.Label>Минимальная стоимость Cost</Form.Label>
+                                        <Form.Label>Минимальная стоимость</Form.Label>
                                         <Form.Control type="text" id='minimalCost' onChange={this.handleChange}/>
                                     </Col>
                                 </Row>
                             </Form.Group>
                             <Form.Group>
                                 <Row>
-                                    <Col>
-
-                                    </Col>
-
                                     <Col>
                                         <ButtonToolbar>
                                             <Button variant="primary" type='submit'>Создать</Button>

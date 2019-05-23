@@ -1,5 +1,6 @@
 import * as React from "react";
 import {API_URL} from "../app-config";
+import {Redirect} from 'react-router-dom';
 
 export class OrderForm extends React.Component {
 
@@ -22,7 +23,8 @@ export class OrderForm extends React.Component {
             sacheList: [],
             canvasList: [],
             coverList: [],
-            isLoading: true
+            isLoading: true,
+            redirectToLogin: false
         };
 
         this.handleSelectChange = this.handleSelectChange.bind(this);
@@ -38,26 +40,6 @@ export class OrderForm extends React.Component {
             cache: 'default'
         };
 
-        // Promise.all(
-        //     fetch(API_URL + '/getDelivery', myInint),
-        //     fetch(API_URL + '/getCanvas', myInint),
-        //     fetch(API_URL + '/getCover', myInint),
-        //     fetch(API_URL + '/getSache', myInint)
-        // ).then(
-        //     ([deliveryResponse, canvasResponse, coverResponse, sacheResponse]) => {
-        //         this.setState({
-        //             deliveryList: deliveryResponse.json(),
-        //             canvasList: canvasResponse.json(),
-        //             coverList: coverResponse.json(),
-        //             sacheList: sacheResponse.json(),
-        //             isLoading: false
-        //         });
-        //     }
-        // ).catch(
-        //     () => {
-        //         alert("Ошибка загрузки данных");
-        //     }
-        // );
 
         fetch(API_URL + '/getDelivery', myInint)
             .then(response => response.json())
@@ -91,37 +73,26 @@ export class OrderForm extends React.Component {
     }
 
     handleSelectChange(event) {
-        //console.log(this.state);
-
         this.setState({
-            order:{ ...this.state.order,
-            [event.target.name]: event.target.value
+            order: {
+                ...this.state.order,
+                [event.target.name]: event.target.value
             }
         })
     }
 
     handleSubmit(event) {
         const parms = this.state.order;
-        const body =  Object.keys(parms).map(key => `${key}=${parms[key]}`).join('&');
-        fetch(API_URL+'/newOrder?'+body,
+        const body = Object.keys(parms).map(key => `${key}=${parms[key]}`).join('&');
+        fetch(API_URL + '/newOrder?' + body,
             {
                 method: 'POST'
             })
-            .then(response =>response.json())
+            .then(response => response.json())
             .then(response => {
-                this.setState({order: {
-                        recipient: '',
-                        adress: '',
-                        phone: '',
-                        deliveryType: '',
-                        comment: '',
-                        cover: '',
-                        canvas: '',
-                        sache: '',
-                        havePatch: false
-                    }});
-                console.log(response);
-                this.props.onSubmitCallback()
+                this.setState({redirectToLogin:true})
+                //console.log(response);
+                //this.props.onSubmitCallback()
             })
             .catch(e => {
                 alert('error');
@@ -138,66 +109,71 @@ export class OrderForm extends React.Component {
         const {deliveryList, sacheList, canvasList, coverList} = this.state;
 
         return (
-            <form>
-                <p>Получатель ФИО:
-                    <input name='recipient' onChange={this.handleChange} value={this.state.order.recipient}/>
-                </p>
-                <p>Адрес доствки:
-                    <input name='adress' onChange={this.handleChange} value={this.state.order.adress}/>
-                </p>
+            <React.Fragment> {
+                this.state.redirectToLogin ?
+                    <Redirect to="/orders" push/> :
+                    <form>
+                        <p>Получатель ФИО:
+                            <input name='recipient' onChange={this.handleChange} value={this.state.order.recipient}/>
+                        </p>
+                        <p>Адрес доствки:
+                            <input name='adress' onChange={this.handleChange} value={this.state.order.adress}/>
+                        </p>
 
-                <p>Телефон:
-                    <input type='tel' name='phone' onChange={this.handleChange} value={this.state.order.phone}/>
-                </p>
-                <p>Вид доставки:
-                    <select name='deliveryType' onChange={this.handleChange} value={this.state.order.deliveryType}>
-                        <option value=""></option>
-                        {deliveryList.map((delivery) =>
-                            <option key={delivery.id} value={delivery.id}>
-                                {delivery.name}
-                            </option>)
-                        }
-                    </select>
-                </p>
-                <p>Комментарий:
-                    <input name='comment' onChange={this.handleChange} value={this.state.order.comment}/>
-                </p>
-                <p>Название ткани:
-                    <select name='canvas' onChange={this.handleChange} value={this.state.order.canvas}>
-                        <option value=""></option>
-                        {canvasList.map((canvas) =>
-                            <option key={canvas.id} value={canvas.id}>
-                                {canvas.name}
-                            </option>)
-                        }
-                    </select>
-                </p>
-                <p>Аромат саше:
-                    <select name='sache' onChange={this.handleChange} value={this.state.order.sache}>
-                        <option value=""></option>
-                        {sacheList.map((sache) =>
-                            <option key={sache.id} value={sache.id}>
-                                {sache.name}
-                            </option>)
-                        }
-                    </select>
-                </p>
-                <p>Нужен патч?
-                    <input type='checkbox' name='havePatch' onChange={this.handleChange}
-                           value={this.state.order.havePatch}/>
-                </p>
-                <p>Вид чехла:
-                    <select name='cover' onChange={this.handleSelectChange} value={this.state.order.cover}>
-                        <option value=""></option>
-                        { coverList.map((cover) =>
-                            <option key={cover.id} value={cover.id}>
-                                {cover.name}
-                            </option>)
-                        }
-                    </select>
-                </p>
-                <button onClick={this.handleSubmit}>Создать!</button>
-            </form>
+                        <p>Телефон:
+                            <input type='tel' name='phone' onChange={this.handleChange} value={this.state.order.phone}/>
+                        </p>
+                        <p>Вид доставки:
+                            <select name='deliveryType' onChange={this.handleChange}
+                                    value={this.state.order.deliveryType}>
+                                <option value=""></option>
+                                {deliveryList.map((delivery) =>
+                                    <option key={delivery.id} value={delivery.id}>
+                                        {delivery.name}
+                                    </option>)
+                                }
+                            </select>
+                        </p>
+                        <p>Комментарий:
+                            <input name='comment' onChange={this.handleChange} value={this.state.order.comment}/>
+                        </p>
+                        <p>Название ткани:
+                            <select name='canvas' onChange={this.handleChange} value={this.state.order.canvas}>
+                                <option value=""></option>
+                                {canvasList.map((canvas) =>
+                                    <option key={canvas.id} value={canvas.id}>
+                                        {canvas.name}
+                                    </option>)
+                                }
+                            </select>
+                        </p>
+                        <p>Аромат саше:
+                            <select name='sache' onChange={this.handleChange} value={this.state.order.sache}>
+                                <option value=""></option>
+                                {sacheList.map((sache) =>
+                                    <option key={sache.id} value={sache.id}>
+                                        {sache.name}
+                                    </option>)
+                                }
+                            </select>
+                        </p>
+                        <p>Нужен патч?
+                            <input type='checkbox' name='havePatch' onChange={this.handleChange}
+                                   value={this.state.order.havePatch}/>
+                        </p>
+                        <p>Вид чехла:
+                            <select name='cover' onChange={this.handleSelectChange} value={this.state.order.cover}>
+                                <option value=""></option>
+                                {coverList.map((cover) =>
+                                    <option key={cover.id} value={cover.id}>
+                                        {cover.name}
+                                    </option>)
+                                }
+                            </select>
+                        </p>
+                        <button onClick={this.handleSubmit}>Создать!</button>
+                    </form>
+            } </React.Fragment>
         );
     }
 }

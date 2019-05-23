@@ -21,8 +21,6 @@ export class FilteredOrders extends React.Component {
             rowNames: [],
             dataKey: [],
             orderList: []
-
-
         };
 
         this.isActive = this.isActive.bind(this);
@@ -60,7 +58,6 @@ export class FilteredOrders extends React.Component {
         console.log(target);
     }
 
-
     render() {
         const {rowNames, dataKey, orderList} = this.state;
         return (
@@ -68,9 +65,9 @@ export class FilteredOrders extends React.Component {
                 <Paper className='!fsdfsdf!'>
                     <Table className='!SDAD!'>
                         <TableHead>
-                            <TableRow key="head">
+                            <TableRow key="head" >
                                 {rowNames.map(row => (
-                                    <TableCell>{row}</TableCell>
+                                    <TableCell key={row}>{row}</TableCell>
                                 ))}
                             </TableRow>
                         </TableHead>
@@ -79,7 +76,7 @@ export class FilteredOrders extends React.Component {
                                 <TableRow key={row.id} onClick={this.handleCick}>
                                     {
                                         dataKey.map(bat => (
-                                            <TableCell>{!row[bat] ? "-" : row[bat] }</TableCell>
+                                            <TableCell key={`${row.id}${bat}`}>{!row[bat] ? "-" : row[bat] }</TableCell>
                                         ))}
                                 </TableRow>
 
