@@ -6,6 +6,7 @@ import {OrderModal} from "./OrderModal";
 import {Cover} from "./Cover";
 import {Home} from "./Home";
 import {DeliveryList} from "./tables/DeliveryList";
+import {FilteredOrders} from "./tables/FilteredOrders";
 import {CanvasForm} from "./objectsForms/CanvasForm";
 import {MaterialList} from "./tables/MaterialList";
 import {DeliveryForm} from './objectsForms/DeliveryForm'
@@ -21,6 +22,7 @@ export const Main = () => {
             <Switch>
                 <Route exact path='/' component={Home} />
                 <Route path='/orders' component={OrderList} />
+                <Route path='/filteredOrders' component={FilteredOrders} />
                 <Route path='/canvas' component={MaterialList}/>
                 <Route path='/sache' component={SacheList} />
                 <Route path='/cover' component={CoverList} />

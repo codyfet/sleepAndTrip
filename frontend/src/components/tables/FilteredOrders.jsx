@@ -7,7 +7,7 @@ import TableHead from '@material-ui/core/TableHead/index';
 import TableRow from '@material-ui/core/TableRow/index';
 import {API_URL} from "../../app-config";
 
-export class DeliveryList extends React.Component {
+export class FilteredOrders extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,23 +19,19 @@ export class DeliveryList extends React.Component {
                 minWidth: 700,
             },
             rowNames: [],
+            dataKey: [],
             orderList: []
+
+
         };
 
         this.isActive = this.isActive.bind(this);
     }
 
     componentDidMount() {
-//        const rowNames =
-//        { "phone":"Телефон",
-//          "adress": "Адрес доставки",
-//          "deliveryType": "Вид доставки",
-//          "orderDate": "Дата заказа"
-//          "recipient": "Получатель"
-//          "summ": "сумма"
-//          "trackNumber": "номер посылки"
-//
-//        };
+        const rowNames =["Телефон", "Адрес доставки", "Вид доставки", "Дата заказа", "Получатель", "сумма", "номер посылки"];
+        const keys = ["phone", "adress", "deliveryType", "orderDate", "recipient", "summ", "trackNumber"];
+
         const myInint = {
             method: 'GET',
             headers: new Headers(),
@@ -43,43 +39,50 @@ export class DeliveryList extends React.Component {
             cache: 'default'
         };
 
-        fetch(API_URL + '/getOrders', myInint)
+        fetch(API_URL + '/getAllOrders', myInint)
             .then(response => response.json())
-            .then(data => {this.setState({deliveryList: data})})
-            .catch(e =>{alert('ERROR')});
+            .then(data => {
+                this.setState({orderList: data, rowNames: rowNames, dataKey: keys})
+            })
+            .catch(e => {
+                alert('ERROR')
+            });
 
         //console.log(JSON.stringify(this.state))
     }
 
-    isActive (bool){
+    isActive(bool) {
         return bool ? "Да" : "Нет";
     }
 
+    handleCick(event){
+        const target = event.target;
+        console.log(target);
+    }
+
+
     render() {
-        const rows = this.state.deliveryList;
+        const {rowNames, dataKey, orderList} = this.state;
         return (
             <React.Fragment>
                 <Paper className='!fsdfsdf!'>
                     <Table className='!SDAD!'>
                         <TableHead>
-                            <TableRow>
-                                <TableCell>Доставка</TableCell>
-                                <TableCell align="right">Телефон</TableCell>
-                                <TableCell align="right">Минимальная стоимость</TableCell>
-                                <TableCell align="right">Активна?</TableCell>
+                            <TableRow key="head">
+                                {rowNames.map(row => (
+                                    <TableCell>{row}</TableCell>
+                                ))}
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {rows.map(row => (
-                                <TableRow key={row.id}>
-                                    <TableCell component="th" scope="row">
-                                        {row.name}
-                                    </TableCell>
-                                    <TableCell align="right">{row.phone}</TableCell>
-                                    <TableCell align="right">{row.minimalCost}</TableCell>
-                                    <TableCell align="right">{ this.isActive(row.isActive)}
-                                    </TableCell>
+                            {orderList.map(row => (
+                                <TableRow key={row.id} onClick={this.handleCick}>
+                                    {
+                                        dataKey.map(bat => (
+                                            <TableCell>{!row[bat] ? "-" : row[bat] }</TableCell>
+                                        ))}
                                 </TableRow>
+
                             ))}
                         </TableBody>
                     </Table>

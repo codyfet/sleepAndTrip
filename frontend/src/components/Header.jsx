@@ -8,6 +8,7 @@ export const Header = () => {
             <div className="menu-div">
             <div align="center">
                 <Link to='/orders'>Заказы</Link>
+                <Link to='/filteredOrders'>Заказы 2</Link>
             </div>
             <Row className='main-menu'>
                 <Col> <Link to='/canvas'>Материалы</Link> </Col>
