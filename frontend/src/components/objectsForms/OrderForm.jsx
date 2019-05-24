@@ -1,5 +1,5 @@
 import * as React from "react";
-import {API_URL} from "../app-config";
+import {API_URL} from "../../app-config";
 import {Redirect} from 'react-router-dom';
 
 export class OrderForm extends React.Component {

@@ -6,6 +6,9 @@ import TableCell from '@material-ui/core/TableCell/index';
 import TableHead from '@material-ui/core/TableHead/index';
 import TableRow from '@material-ui/core/TableRow/index';
 import {API_URL} from "../../app-config";
+import {Redirect} from 'react-router-dom';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 export class FilteredOrders extends React.Component {
     constructor(props) {
@@ -20,16 +23,18 @@ export class FilteredOrders extends React.Component {
             },
             rowNames: [],
             dataKey: [],
-            orderList: []
+            orderList: [],
+            redirectToLogin: false
         };
 
         this.isActive = this.isActive.bind(this);
         this.handleCick = this.handleCick.bind(this);
+        this.handleAddClick = this.handleAddClick.bind(this);
 
     }
 
     componentDidMount() {
-        const rowNames =["Телефон", "Адрес доставки", "Вид доставки", "Дата заказа", "Получатель", "сумма", "номер посылки"];
+        const rowNames = ["Телефон", "Адрес доставки", "Вид доставки", "Дата заказа", "Получатель", "сумма", "номер посылки"];
         const keys = ["phone", "adress", "deliveryType", "orderDate", "recipient", "summ", "trackNumber"];
 
         const myInint = {
@@ -55,38 +60,51 @@ export class FilteredOrders extends React.Component {
         return bool ? "Да" : "Нет";
     }
 
-    handleCick(key){
+    handleCick(key) {
 
-        console.log(this.state.orderList.filter((row) =>{ return row.id == key})[0]);
+        console.log(this.state.orderList.filter((row) => {
+            return row.id == key
+        })[0]);
+    }
+
+
+    handleAddClick() {
+        this.setState({redirectToLogin: true})
     }
 
     render() {
         const {rowNames, dataKey, orderList} = this.state;
         return (
-            <React.Fragment>
-                <Paper className='!fsdfsdf!'>
-                    <Table className='!SDAD!'>
-                        <TableHead>
-                            <TableRow key="head" >
-                                {rowNames.map(row => (
-                                    <TableCell key={row}>{row}</TableCell>
-                                ))}
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {orderList.map(row => (
-                                <TableRow key={row.id} onClick={() => this.handleCick(row.id)}>
-                                    {
-                                        dataKey.map(bat => (
-                                            <TableCell key={`${row.id}${bat}`}>{!row[bat] ? "-" : row[bat] }</TableCell>
-                                        ))}
+            this.state.redirectToLogin ?
+                <Redirect to="/newOrder" push/> :
+                <React.Fragment>
+                    <Fab color="primary" aria-label="Add" onClick={this.handleAddClick}>
+                        <AddIcon/>
+                    </Fab>
+                    <Paper>
+                        <Table>
+                            <TableHead className="header-table-view">
+                                <TableRow key="head">
+                                    {rowNames.map(row => (
+                                        <TableCell key={row}>{row}</TableCell>
+                                    ))}
                                 </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {orderList.map(row => (
+                                    <TableRow key={row.id} onClick={() => this.handleCick(row.id)}>
+                                        {
+                                            dataKey.map(bat => (
+                                                <TableCell
+                                                    key={`${row.id}${bat}`}>{!row[bat] ? "-" : row[bat]}</TableCell>
+                                            ))}
+                                    </TableRow>
 
-                            ))}
-                        </TableBody>
-                    </Table>
-                </Paper>
-            </React.Fragment>)
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </Paper>
+                </React.Fragment>)
     }
 }
 

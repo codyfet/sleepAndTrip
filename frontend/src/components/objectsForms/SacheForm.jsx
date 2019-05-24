@@ -10,7 +10,7 @@ export class SacheForm extends React.Component {
         this.state = {
             //id : '',
             name: '',
-            cost: 100.0,
+            cost: 0,
             //previewurl: '',
             //viewurl: '',
             description: '',
@@ -57,7 +57,7 @@ export class SacheForm extends React.Component {
         fetch(API_URL + '/newSache', myInit)
             .then(response => response.json())
             .then(response => {
-                this.setState({name: '', cost: 100, description: '', isInStore: false});
+                this.setState({name: '', cost: 0, description: '', isInStore: false});
                 console.log(response);
                 if (response === "OK") {
                     alert('Запись создана');
@@ -86,7 +86,7 @@ export class SacheForm extends React.Component {
                 {
                     this.state.redirectToLogin ?
                         <Redirect to="/sache" push/> :
-                        <Form onSubmit={this.handleSubmit}>
+                        <Form onSubmit={this.handleSubmit} className="Creation-form">
                             <Form.Group>
                                 <Row>
                                     <Col>
@@ -113,7 +113,7 @@ export class SacheForm extends React.Component {
                             </Form.Group>
 
                             <ButtonToolbar>
-                                <Button variant="primary" type='submit'>Primary</Button>
+                                <Button variant="danger" type='submit'>Создать</Button>
                                 <Button variant="link" onClick={this.handleCacel}>Cancel</Button>
                             </ButtonToolbar>
                         </Form>
