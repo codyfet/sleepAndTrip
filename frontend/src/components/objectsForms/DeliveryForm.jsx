@@ -9,7 +9,7 @@ export class DeliveryForm extends React.Component {
         super(props);
         this.state = {
             name: '',
-            minimalCost: 100,
+            minimalCost: 0,
             phone: '',
             isActive: false,
             //id : '',
@@ -32,7 +32,7 @@ export class DeliveryForm extends React.Component {
             if (!parseFloat(value)) {
                 target.isValid = false;
             } else {
-                this.setState({cost: parseFloat(value)})
+                this.setState({minimalCost: parseFloat(value)})
             }
         } else {
             this.setState({
@@ -57,7 +57,7 @@ export class DeliveryForm extends React.Component {
         fetch(API_URL + '/newDelivery', myInit)
             .then(response => response.json())
             .then(response => {
-                this.setState({name: '', minimalCost: 100, phone: '', isActive: false});
+                this.setState({name: '', minimalCost: 0, phone: '', isActive: false});
                 console.log(response);
                 if (response === "OK") {
                     alert('Запись создана');
@@ -86,7 +86,7 @@ export class DeliveryForm extends React.Component {
                 {
                     this.state.redirectToLogin ?
                         <Redirect to="/delivery" push/> :
-                        <Form onSubmit={this.handleSubmit}>
+                        <Form onSubmit={this.handleSubmit} className="Creation-form">
                             <Form.Group>
                                 <Row>
                                     <Col>
@@ -99,17 +99,14 @@ export class DeliveryForm extends React.Component {
                                     <Col>
                                         <Form.Label>Телефон</Form.Label>
                                         <Form.Control type="text" id='phone' onChange={this.handleChange}/>
-                                        <Form.Label>Минимальная стоимость Cost</Form.Label>
+
+                                        <Form.Label>Минимальная стоимость</Form.Label>
                                         <Form.Control type="text" id='minimalCost' onChange={this.handleChange}/>
                                     </Col>
                                 </Row>
                             </Form.Group>
                             <Form.Group>
                                 <Row>
-                                    <Col>
-
-                                    </Col>
-
                                     <Col>
                                         <ButtonToolbar>
                                             <Button variant="primary" type='submit'>Создать</Button>

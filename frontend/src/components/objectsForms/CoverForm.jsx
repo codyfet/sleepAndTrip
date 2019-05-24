@@ -10,7 +10,7 @@ export class CoverForm extends React.Component {
         this.state = {
             //id : '',
             name: '',
-            cost: 100.0,
+            cost: 0,
             //previewurl: '',
             //viewurl: '',
             description: '',
@@ -86,7 +86,7 @@ export class CoverForm extends React.Component {
                 {
                     this.state.redirectToLogin ?
                         <Redirect to="/cover" push/> :
-                        <Form onSubmit={this.handleSubmit}>
+                        <Form onSubmit={this.handleSubmit} className="Creation-form">
                             <Form.Group>
                                 <Row>
                                     <Col>
@@ -113,8 +113,8 @@ export class CoverForm extends React.Component {
                             </Form.Group>
 
                             <ButtonToolbar>
-                                <Button variant="primary" type='submit'>Primary</Button>
-                                <Button variant="link" onClick={this.handleCacel}>Cancel</Button>
+                                <Button variant="danger" type='submit'>Создать</Button>
+                                <Button variant="link" onClick={this.handleCacel}>Отмена</Button>
                             </ButtonToolbar>
                         </Form>
                 }

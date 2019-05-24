@@ -10,7 +10,7 @@ export class CanvasForm extends React.Component {
         this.state = {
             //id : '',
             name: '',
-            cost: 100.0,
+            cost: 0,
             //previewurl: '',
             //viewurl: '',
             composition: '',
@@ -78,7 +78,7 @@ export class CanvasForm extends React.Component {
 
     handleCacel(event) {
         console.log('Cancel pressed')
-        this.setState({            redirectToLogin: true})
+        this.setState({redirectToLogin: true})
     }
 
     render() {
@@ -87,40 +87,43 @@ export class CanvasForm extends React.Component {
                 {
                     this.state.redirectToLogin ?
                         <Redirect to="/canvas" push/> :
-                        <Form onSubmit={this.handleSubmit}>
+                        <Form onSubmit={this.handleSubmit} className="Creation-form">
                             <Form.Group>
                                 <Row>
                                     <Col>
-                                        <Form.Label>Material name</Form.Label>
+                                        <Form.Label>Название материала</Form.Label>
                                         <Form.Control type="text" id='name' onChange={this.handleChange}/>
                                     </Col>
-
+                                </Row>
+                                <Row>
                                     <Col>
-                                        <Form.Label>Composition</Form.Label>
+                                        <Form.Label>Состав материала</Form.Label>
                                         <Form.Control type="text" id='composition' onChange={this.handleChange}/>
                                     </Col>
                                 </Row>
-                            </Form.Group>
 
-                            <Form.Label>Cost</Form.Label>
+
+                            <Form.Label>Стоимость</Form.Label>
                             <Form.Control type="text" id='cost' onChange={this.handleChange}/>
 
-                            <Form.Group>
-                        <span>
-                        <Form.Label>In archieve?</Form.Label>
-                        <Form.Check id='isArchieved' onChange={this.handleChange}/>
-                        </span>
+                            <Row>
+                                <Col>
+                                    <Form.Label>Архивный?</Form.Label>
+                                    <Form.Check id='isArchieved' onChange={this.handleChange}/>
+                                </Col>
 
-                                <span>
-                        <Form.Label>In Store?</Form.Label>
-                        <Form.Check id='isInStore' onChange={this.handleChange}/>
-                    </span>
+                                <Col>
+                                    <Form.Label>Есть в продаже?</Form.Label>
+                                    <Form.Check id='isInStore' onChange={this.handleChange}/>
+                                </Col>
+                            </Row>
                             </Form.Group>
-
-                            <ButtonToolbar>
-                                <Button variant="primary" type='submit'>Primary</Button>
-                                <Button variant="link" onClick={this.handleCacel}>Cancel</Button>
-                            </ButtonToolbar>
+                            <Row>
+                                <ButtonToolbar>
+                                    <Button variant="primary" type='submit'>Создать</Button>
+                                    <Button variant="link" onClick={this.handleCacel}>Отмена</Button>
+                                </ButtonToolbar>
+                            </Row>
                         </Form>
                 }
             </React.Fragment>);

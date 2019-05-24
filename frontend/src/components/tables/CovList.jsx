@@ -6,6 +6,9 @@ import TableCell from '@material-ui/core/TableCell/index';
 import TableHead from '@material-ui/core/TableHead/index';
 import TableRow from '@material-ui/core/TableRow/index';
 import {API_URL} from "../../app-config";
+import {Redirect} from 'react-router-dom';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 export class CoverList extends React.Component {
     constructor(props) {
@@ -19,11 +22,14 @@ export class CoverList extends React.Component {
                 minWidth: 700,
             },
             rows: [],
-            deliveryList: []
+            deliveryList: [],
+            redirectToLogin: false
         };
 
         this.isActive = this.isActive.bind(this);
+        this.handleAddClick = this.handleAddClick.bind(this);
     }
+
 
     componentDidMount() {
 
@@ -40,7 +46,13 @@ export class CoverList extends React.Component {
             .catch(e =>{alert('ERROR')});
 
         //console.log(JSON.stringify(this.state))
+
     }
+
+    handleAddClick(){
+        this.setState({redirectToLogin:true})
+    }
+
 
     isActive (bool){
         return bool ? "Да" : "Нет";
@@ -48,11 +60,17 @@ export class CoverList extends React.Component {
 
     render() {
         const rows = this.state.deliveryList;
+
         return (
+            this.state.redirectToLogin ?
+                <Redirect to="/newCover" push/> :
             <React.Fragment>
+                <Fab color="primary" aria-label="Add" onClick={this.handleAddClick}>
+                    <AddIcon />
+                </Fab>
                 <Paper className='!fsdfsdf!'>
-                    <Table className='!SDAD!'>
-                        <TableHead>
+                    <Table>
+                        <TableHead className="header-table-view">
                             <TableRow>
                                 <TableCell>Название материала</TableCell>
                                 <TableCell align="left">Стоимость</TableCell>

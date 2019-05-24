@@ -6,8 +6,11 @@ import TableCell from '@material-ui/core/TableCell/index';
 import TableHead from '@material-ui/core/TableHead/index';
 import TableRow from '@material-ui/core/TableRow/index';
 import {API_URL} from "../../app-config";
+import {Redirect} from 'react-router-dom';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
-export class DeliveryList extends React.Component {
+export class FilteredOrders extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,23 +22,21 @@ export class DeliveryList extends React.Component {
                 minWidth: 700,
             },
             rowNames: [],
-            orderList: []
+            dataKey: [],
+            orderList: [],
+            redirectToLogin: false
         };
 
         this.isActive = this.isActive.bind(this);
+        this.handleCick = this.handleCick.bind(this);
+        this.handleAddClick = this.handleAddClick.bind(this);
+
     }
 
     componentDidMount() {
-//        const rowNames =
-//        { "phone":"Телефон",
-//          "adress": "Адрес доставки",
-//          "deliveryType": "Вид доставки",
-//          "orderDate": "Дата заказа"
-//          "recipient": "Получатель"
-//          "summ": "сумма"
-//          "trackNumber": "номер посылки"
-//
-//        };
+        const rowNames = ["Телефон", "Адрес доставки", "Вид доставки", "Дата заказа", "Получатель", "сумма", "номер посылки"];
+        const keys = ["phone", "adress", "deliveryType", "orderDate", "recipient", "summ", "trackNumber"];
+
         const myInint = {
             method: 'GET',
             headers: new Headers(),
@@ -43,48 +44,67 @@ export class DeliveryList extends React.Component {
             cache: 'default'
         };
 
-        fetch(API_URL + '/getOrders', myInint)
+        fetch(API_URL + '/getAllOrders', myInint)
             .then(response => response.json())
-            .then(data => {this.setState({deliveryList: data})})
-            .catch(e =>{alert('ERROR')});
+            .then(data => {
+                this.setState({orderList: data, rowNames: rowNames, dataKey: keys})
+            })
+            .catch(e => {
+                alert('ERROR')
+            });
 
         //console.log(JSON.stringify(this.state))
     }
 
-    isActive (bool){
+    isActive(bool) {
         return bool ? "Да" : "Нет";
     }
 
+    handleCick(key) {
+
+        console.log(this.state.orderList.filter((row) => {
+            return row.id == key
+        })[0]);
+    }
+
+
+    handleAddClick() {
+        this.setState({redirectToLogin: true})
+    }
+
     render() {
-        const rows = this.state.deliveryList;
+        const {rowNames, dataKey, orderList} = this.state;
         return (
-            <React.Fragment>
-                <Paper className='!fsdfsdf!'>
-                    <Table className='!SDAD!'>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Доставка</TableCell>
-                                <TableCell align="right">Телефон</TableCell>
-                                <TableCell align="right">Минимальная стоимость</TableCell>
-                                <TableCell align="right">Активна?</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {rows.map(row => (
-                                <TableRow key={row.id}>
-                                    <TableCell component="th" scope="row">
-                                        {row.name}
-                                    </TableCell>
-                                    <TableCell align="right">{row.phone}</TableCell>
-                                    <TableCell align="right">{row.minimalCost}</TableCell>
-                                    <TableCell align="right">{ this.isActive(row.isActive)}
-                                    </TableCell>
+            this.state.redirectToLogin ?
+                <Redirect to="/newOrder" push/> :
+                <React.Fragment>
+                    <Fab color="primary" aria-label="Add" onClick={this.handleAddClick}>
+                        <AddIcon/>
+                    </Fab>
+                    <Paper>
+                        <Table>
+                            <TableHead className="header-table-view">
+                                <TableRow key="head">
+                                    {rowNames.map(row => (
+                                        <TableCell key={row}>{row}</TableCell>
+                                    ))}
                                 </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </Paper>
-            </React.Fragment>)
+                            </TableHead>
+                            <TableBody>
+                                {orderList.map(row => (
+                                    <TableRow key={row.id} onClick={() => this.handleCick(row.id)}>
+                                        {
+                                            dataKey.map(bat => (
+                                                <TableCell
+                                                    key={`${row.id}${bat}`}>{!row[bat] ? "-" : row[bat]}</TableCell>
+                                            ))}
+                                    </TableRow>
+
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </Paper>
+                </React.Fragment>)
     }
 }
 
