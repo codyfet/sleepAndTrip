@@ -24,6 +24,8 @@ export class FilteredOrders extends React.Component {
         };
 
         this.isActive = this.isActive.bind(this);
+        this.handleCick = this.handleCick.bind(this);
+
     }
 
     componentDidMount() {
@@ -53,9 +55,9 @@ export class FilteredOrders extends React.Component {
         return bool ? "Да" : "Нет";
     }
 
-    handleCick(event){
-        const target = event.target;
-        console.log(target);
+    handleCick(key){
+
+        console.log(this.state.orderList.filter((row) =>{ return row.id == key})[0]);
     }
 
     render() {
@@ -73,7 +75,7 @@ export class FilteredOrders extends React.Component {
                         </TableHead>
                         <TableBody>
                             {orderList.map(row => (
-                                <TableRow key={row.id} onClick={this.handleCick}>
+                                <TableRow key={row.id} onClick={() => this.handleCick(row.id)}>
                                     {
                                         dataKey.map(bat => (
                                             <TableCell key={`${row.id}${bat}`}>{!row[bat] ? "-" : row[bat] }</TableCell>

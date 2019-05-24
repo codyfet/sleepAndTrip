@@ -32,7 +32,7 @@ module.exports = {
   output: {
     path: __dirname + '/dist',
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin()
@@ -41,7 +41,8 @@ module.exports = {
     contentBase: './dist',
     hot: true,
       host: 'localhost',
-      port: 8081
+      port: 8081,
+      historyApiFallback: true
 
   }
 };
