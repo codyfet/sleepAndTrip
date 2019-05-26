@@ -7,7 +7,7 @@ import TableHead from '@material-ui/core/TableHead/index';
 import TableRow from '@material-ui/core/TableRow/index';
 import {API_URL} from "../../app-config";
 import {Redirect} from 'react-router-dom';
-import Fab from '@material-ui/core/Fab';
+import Fab from "@material-ui/core/Fab";
 import AddIcon from '@material-ui/icons/Add';
 
 export class FilteredOrders extends React.Component {
@@ -34,6 +34,10 @@ export class FilteredOrders extends React.Component {
     }
 
     componentDidMount() {
+        this.refreshTable();
+    }
+
+    refreshTable() {
         const rowNames = ["Телефон", "Адрес доставки", "Вид доставки", "Дата заказа", "Получатель", "сумма", "номер посылки"];
         const keys = ["phone", "adress", "deliveryType", "orderDate", "recipient", "summ", "trackNumber"];
 
@@ -61,12 +65,10 @@ export class FilteredOrders extends React.Component {
     }
 
     handleCick(key) {
-
         console.log(this.state.orderList.filter((row) => {
             return row.id == key
         })[0]);
     }
-
 
     handleAddClick() {
         this.setState({redirectToLogin: true})
@@ -78,9 +80,11 @@ export class FilteredOrders extends React.Component {
             this.state.redirectToLogin ?
                 <Redirect to="/newOrder" push/> :
                 <React.Fragment>
-                    <Fab color="primary" aria-label="Add" onClick={this.handleAddClick}>
-                        <AddIcon/>
-                    </Fab>
+                    <div className="add-button-circle">
+                        <Fab color="primary" aria-label="Add" onClick={this.handleAddClick}>
+                            <AddIcon className="add-button"/>
+                        </Fab>
+                    </div>
                     <Paper>
                         <Table>
                             <TableHead className="header-table-view">

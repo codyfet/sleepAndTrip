@@ -94,7 +94,7 @@ public class OrderController {
         newOrder.setPayed(false);
 
 
-        Float summ = 1000.0f;
+        Float summ = 0f;
 
         if (deliveryTypeId != null) {
             Optional<Delivery> delivery = deliveryRepository.findById(deliveryTypeId);

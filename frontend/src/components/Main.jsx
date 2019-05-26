@@ -4,19 +4,19 @@ import {Route, Switch} from 'react-router-dom';
 
 import {DeliveryList} from "./tables/DeliveryList";
 import {FilteredOrders} from "./tables/FilteredOrders";
-import {CanvasForm} from "./objectsForms/CanvasForm";
+import {CanvasForm} from "./createObjectForm/CanvasForm";
 import {MaterialList} from "./tables/MaterialList";
-import {DeliveryForm} from './objectsForms/DeliveryForm'
-import {SacheForm} from './objectsForms/SacheForm'
-import {CoverForm} from './objectsForms/CoverForm'
+import {DeliveryForm} from './createObjectForm/DeliveryForm'
+import {SacheForm} from './createObjectForm/SacheForm'
+import {CoverForm} from './createObjectForm/CoverForm'
 import {SacheList} from "./tables/SacheList";
 import {CoverList} from "./tables/CovList";
-import {OrderForm} from "./objectsForms/OrderForm";
+import {OrderForm} from "./createObjectForm/OrderForm";
 
 
 export const Main = () => {
     return (
-        <div className="Site-content">
+        <div>
             <Switch>
                 <Route path='/orders' component={FilteredOrders}/>
                 <Route path='/canvas' component={MaterialList}/>

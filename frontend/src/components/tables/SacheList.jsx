@@ -65,9 +65,11 @@ export class SacheList extends React.Component {
             this.state.redirectToLogin ?
                 <Redirect to="/newSache" push/> :
                 <React.Fragment>
+                    <div className="add-button-circle">
                     <Fab color="primary" aria-label="Add" onClick={this.handleAddClick}>
                         <AddIcon/>
                     </Fab>
+                    </div>
                     <Paper className='!fsdfsdf!'>
                         <Table className='!SDAD!'>
                             <TableHead className="header-table-view">

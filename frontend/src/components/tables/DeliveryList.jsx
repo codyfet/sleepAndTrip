@@ -66,12 +66,14 @@ export class DeliveryList extends React.Component {
             this.state.redirectToLogin ?
                 <Redirect to="/newDelivery" push/> :
                 <React.Fragment>
-                    <Fab color="primary" aria-label="Add" onClick={this.handleAddClick}>
-                        <AddIcon/>
-                    </Fab>
-                    <Paper className='!fsdfsdf!'>
-                        <Table className='!SDAD!'>
-                            <TableHead>
+                    <div className="add-button-circle">
+                        <Fab color="primary" aria-label="Add" onClick={this.handleAddClick}>
+                            <AddIcon/>
+                        </Fab>
+                    </div>
+                    <Paper>
+                        <Table>
+                            <TableHead className="header-table-view">
                                 <TableRow>
                                     <TableCell>Доставка</TableCell>
                                     <TableCell align="right">Телефон</TableCell>
