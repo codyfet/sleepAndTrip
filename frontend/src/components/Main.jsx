@@ -12,6 +12,7 @@ import {CoverForm} from './createObjectForm/CoverForm'
 import {SacheList} from "./tables/SacheList";
 import {CoverList} from "./tables/CovList";
 import {OrderForm} from "./createObjectForm/OrderForm";
+import {EditDelivery} from "./editAndViewForm/EditDelivery";
 
 
 export const Main = () => {
@@ -29,6 +30,8 @@ export const Main = () => {
                 <Route path='/newDelivery' component={DeliveryForm}/>
                 <Route path='/newSache' component={SacheForm}/>
                 <Route path='/newCover' component={CoverForm}/>
+
+                <Route path="/editDelivery" component={EditDelivery}/>
             </Switch>
         </div>
     )

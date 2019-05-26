@@ -3,24 +3,40 @@ import {Button, ButtonToolbar, Col, Form, Row} from 'react-bootstrap';
 import {API_URL} from "../../app-config";
 import {Redirect} from 'react-router-dom';
 
-export class DeliveryForm extends React.Component {
+
+export class EditDelivery extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            id: '',
             name: '',
-            minimalCost: 0,
+            minimalCost: '',
             phone: '',
-            isActive: false,
+            isActive: '',
             redirectToLogin: false
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCacel = this.handleCacel.bind(this);
+
     }
 
     componentDidMount() {
+
+        const delivery = !this.props.location.state.delivery? null : this.props.location.state.delivery;
+
+        console.log(delivery);
+
+        this.setState(
+                    {
+                        id: delivery.id,
+                        name: delivery.name,
+                        minimalCost: delivery.minimalCost,
+                        phone: delivery.phone,
+                        isActive: delivery.isActive
+                    });
 
 
     }
@@ -52,17 +68,18 @@ export class DeliveryForm extends React.Component {
 
         const myInit = {
             method: 'PUT',
+            mode: 'cors',
             headers: myHeaders,
             body: body
         };
 
-        fetch(API_URL + '/newDelivery', myInit)
+        fetch(API_URL + '/editDelivery', myInit)
             .then(response => response.json())
             .then(response => {
-                this.setState({name: '', minimalCost: 0, phone: '', isActive: false});
+                //this.setState({name: '', minimalCost: 0, phone: '', isActive: false});
                 console.log(response);
                 if (response === "OK") {
-                    alert('Запись создана');
+                    alert('Запись исправлена');
                     this.setState({
                         redirectToLogin: true
                     })
@@ -83,6 +100,7 @@ export class DeliveryForm extends React.Component {
     }
 
     render() {
+        const {id, name, minimalCost, phone, isActive} = this.state;
         return (
             <React.Fragment>
                 {
@@ -91,27 +109,42 @@ export class DeliveryForm extends React.Component {
                         <Form onSubmit={this.handleSubmit} className="Creation-form">
                             <Form.Group>
                                 <Row>
+                                    <Form.Control
+                                        defaultValue={id}
+                                        id="id"
+                                        readOnly
+                                    />
+                                    <Form.Label>Активна?</Form.Label>
+                                    <Form.Check
+                                        defaultValue={isActive}
+                                        id="isActive"
+                                        onChange={this.handleChange}
+                                    />
+                                </Row>
+                                <Row>
                                     <Col>
                                         <Form.Label>Название доставки</Form.Label>
-                                        <Form.Control type="text" id='name' onChange={this.handleChange}/>
-                                        <Form.Label>Активна ?</Form.Label>
-                                        <Form.Check id='isActive' onChange={this.handleChange}/>
+                                        <Form.Control type="text" defaultValue={name} id='name'
+                                                     />
                                     </Col>
 
                                     <Col>
                                         <Form.Label>Телефон</Form.Label>
-                                        <Form.Control type="text" id='phone' onChange={this.handleChange}/>
+                                        <Form.Control type="text" defaultValue={phone} id='phone'
+                                                      onChange={this.handleChange}/>
 
                                         <Form.Label>Минимальная стоимость</Form.Label>
-                                        <Form.Control type="text" id='minimalCost' onChange={this.handleChange}/>
+                                        <Form.Control type="text" defaultValue={minimalCost} id='minimalCost'
+                                                      onChange={this.handleChange}/>
                                     </Col>
                                 </Row>
+
                             </Form.Group>
                             <Form.Group>
                                 <Row>
                                     <Col>
                                         <ButtonToolbar>
-                                            <Button variant="primary" type='submit'>Создать</Button>
+                                            <Button variant="primary" type='submit'>Сохранить</Button>
                                             <Button variant="link" onClick={this.handleCacel}>Отмена</Button>
                                         </ButtonToolbar>
                                     </Col>

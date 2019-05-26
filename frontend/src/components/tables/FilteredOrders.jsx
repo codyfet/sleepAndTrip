@@ -21,10 +21,13 @@ export class FilteredOrders extends React.Component {
             table: {
                 minWidth: 700,
             },
-            rowNames: [],
             dataKey: [],
             orderList: [],
-            redirectToLogin: false
+            redirectToLogin: false,
+            redirectToEdit: false,
+            redirectEditId: '',
+            rowNames : ["Телефон", "Адрес доставки", "Вид доставки", "Дата заказа", "Получатель", "сумма", "номер посылки"],
+            keys : ["phone", "adress", "deliveryType", "orderDate", "recipient", "summ", "trackNumber"]
         };
 
         this.isActive = this.isActive.bind(this);
@@ -38,8 +41,7 @@ export class FilteredOrders extends React.Component {
     }
 
     refreshTable() {
-        const rowNames = ["Телефон", "Адрес доставки", "Вид доставки", "Дата заказа", "Получатель", "сумма", "номер посылки"];
-        const keys = ["phone", "adress", "deliveryType", "orderDate", "recipient", "summ", "trackNumber"];
+
 
         const myInint = {
             method: 'GET',
@@ -51,35 +53,38 @@ export class FilteredOrders extends React.Component {
         fetch(API_URL + '/getAllOrders', myInint)
             .then(response => response.json())
             .then(data => {
-                this.setState({orderList: data, rowNames: rowNames, dataKey: keys})
+                this.setState({orderList: data})
             })
             .catch(e => {
                 alert('ERROR')
             });
-
-        //console.log(JSON.stringify(this.state))
     }
 
     isActive(bool) {
+
         return bool ? "Да" : "Нет";
     }
 
     handleCick(key) {
+ //       this.setState({redirectToEdit: key});
         console.log(this.state.orderList.filter((row) => {
             return row.id == key
         })[0]);
-    }
+}
 
-    handleAddClick() {
-        this.setState({redirectToLogin: true})
-    }
+handleAddClick()
+{
+    this.setState({redirectToLogin: true})
+}
 
-    render() {
-        const {rowNames, dataKey, orderList} = this.state;
-        return (
-            this.state.redirectToLogin ?
-                <Redirect to="/newOrder" push/> :
-                <React.Fragment>
+render()
+{
+    const {orderList, rowNames, keys} = this.state;
+    const redirectEditId = this.state.redirectEditId;
+    return (
+        this.state.redirectToLogin ?
+            <Redirect to="/newOrder" push/> :
+            <React.Fragment>
                     <div className="add-button-circle">
                         <Fab color="primary" aria-label="Add" onClick={this.handleAddClick}>
                             <AddIcon className="add-button"/>
@@ -98,9 +103,12 @@ export class FilteredOrders extends React.Component {
                                 {orderList.map(row => (
                                     <TableRow key={row.id} onClick={() => this.handleCick(row.id)}>
                                         {
-                                            dataKey.map(bat => (
+                                            keys.map(bat => (
                                                 <TableCell
-                                                    key={`${row.id}${bat}`}>{!row[bat] ? "-" : row[bat]}</TableCell>
+                                                    key={`${row.id}${bat}`}>{
+                                                        typeof row[bat] == "boolean" ? this.isActive(row[bat]) :
+                                                        !row[bat] ? "-" : row[bat]
+                                                    }</TableCell>
                                             ))}
                                     </TableRow>
 
@@ -109,6 +117,6 @@ export class FilteredOrders extends React.Component {
                         </Table>
                     </Paper>
                 </React.Fragment>)
-    }
+}
 }
 

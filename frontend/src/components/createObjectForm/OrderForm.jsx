@@ -41,7 +41,7 @@ export class OrderForm extends React.Component {
         };
 
 
-        fetch(API_URL + '/getDelivery', myInint)
+        fetch(API_URL + '/getDeliveryList', myInint)
             .then(response => response.json())
             .then(data => this.setState({deliveryList: data}));
 
