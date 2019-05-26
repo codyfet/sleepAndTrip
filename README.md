@@ -1,6 +1,6 @@
 # sleepAndTrip
 
-Среда разработки Intellij Idea EE
+Среда разработки Intellij Idea
 
 Backend:
 Для работы требуется запустить сервис back-end из среды разработки.
