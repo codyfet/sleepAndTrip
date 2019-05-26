@@ -24,10 +24,14 @@ export class DeliveryList extends React.Component {
             },
             rows: [],
             deliveryList: [],
-            redirectToLogin: false
+            redirectToLogin: false,
+            redirectToEdit: false,
+            delivery: {},
+            rowNames: ["Название доставки", "Телефон", "Минимальная стоимость", "Активна?"],
+            keys: ["name", "phone", "minimalCost", "isActive"]
         };
 
-        this.isActive = this.isActive.bind(this);
+        this.handleCellsValues = this.handleCellsValues.bind(this);
         this.handleAddClick = this.handleAddClick.bind(this);
     }
 
@@ -40,7 +44,7 @@ export class DeliveryList extends React.Component {
             cache: 'default'
         };
 
-        fetch(API_URL + '/getDelivery', myInint)
+        fetch(API_URL + '/getDeliveryList', myInint)
             .then(response => response.json())
             .then(data => {
                 this.setState({deliveryList: data})
@@ -52,49 +56,76 @@ export class DeliveryList extends React.Component {
         //console.log(JSON.stringify(this.state))
     }
 
-    isActive(bool) {
-        return bool ? "Да" : "Нет";
+    handleCellsValues(bool) {
+        if (typeof bool == "boolean") {
+            return bool ? "Да" : "Нет"
+        } else {
+            return bool
+        }
     }
 
     handleAddClick() {
         this.setState({redirectToLogin: true})
     }
 
+    handleRowClick(key) {
+
+
+        this.setState({
+                delivery:
+                    this.state.deliveryList.filter((row) => {
+                        return row.id === key
+                    })[0]
+            }
+        );
+        this.setState({redirectToEdit: true});
+
+
+    }
+
     render() {
-        const rows = this.state.deliveryList;
+        const {deliveryList, rowNames, keys, delivery} = this.state;
+
         return (
             this.state.redirectToLogin ?
                 <Redirect to="/newDelivery" push/> :
-                <React.Fragment>
-                    <Fab color="primary" aria-label="Add" onClick={this.handleAddClick}>
-                        <AddIcon/>
-                    </Fab>
-                    <Paper className='!fsdfsdf!'>
-                        <Table className='!SDAD!'>
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>Доставка</TableCell>
-                                    <TableCell align="right">Телефон</TableCell>
-                                    <TableCell align="right">Минимальная стоимость</TableCell>
-                                    <TableCell align="right">Активна?</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {rows.map(row => (
-                                    <TableRow key={row.id}>
-                                        <TableCell component="th" scope="row">
-                                            {row.name}
-                                        </TableCell>
-                                        <TableCell align="right">{row.phone}</TableCell>
-                                        <TableCell align="right">{row.minimalCost}</TableCell>
-                                        <TableCell align="right">{this.isActive(row.isActive)}
-                                        </TableCell>
+                this.state.redirectToEdit ?
+                    <Redirect to={{
+                        pathname: "/editDelivery",
+                        state: {delivery}
+                    }} push/>
+                    :
+
+                    <React.Fragment>
+                        <div className="add-button-circle">
+                            <Fab color="primary" aria-label="Add" onClick={this.handleAddClick}>
+                                <AddIcon/>
+                            </Fab>
+                        </div>
+                        <Paper>
+                            <Table>
+                                <TableHead className="header-table-view">
+                                    <TableRow key="head">
+                                        {rowNames.map(row => (
+                                            <TableCell key={row}>{row}</TableCell>
+                                        ))}
                                     </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </Paper>
-                </React.Fragment>)
+                                </TableHead>
+                                <TableBody>
+                                    {deliveryList.map(row => (
+                                        <TableRow key={row.id} onClick={() => this.handleRowClick(row.id)}>
+                                            {keys.map(key => (
+                                                <TableCell key={`${row.id}${key}`}>
+                                                    {!row[key] ? "-" : this.handleCellsValues(row[key])
+                                                    }
+                                                </TableCell>
+                                            ))}
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </Paper>
+                    </React.Fragment>)
     }
 }
 

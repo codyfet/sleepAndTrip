@@ -17,7 +17,6 @@ import javax.persistence.Table;
 public class Delivery {
 
     @Getter
-    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -41,18 +41,22 @@ export class MaterialList extends React.Component {
 
         fetch(API_URL + '/getCanvas', myInint)
             .then(response => response.json())
-            .then(data => {this.setState({deliveryList: data})})
-            .catch(e =>{alert('ERROR')});
+            .then(data => {
+                this.setState({deliveryList: data})
+            })
+            .catch(e => {
+                alert('ERROR')
+            });
 
         //console.log(JSON.stringify(this.state))
     }
 
-    isActive (bool){
+    isActive(bool) {
         return bool ? "Да" : "Нет";
     }
 
-    handleAddClick(){
-        this.setState({redirectToLogin:true})
+    handleAddClick() {
+        this.setState({redirectToLogin: true})
     }
 
     render() {
@@ -61,35 +65,36 @@ export class MaterialList extends React.Component {
             this.state.redirectToLogin ?
                 <Redirect to="/newCanvas" push/> :
                 <React.Fragment>
-                    <Fab color="primary" aria-label="Add" onClick={this.handleAddClick}>
-                        <AddIcon />
-                    </Fab>
-
-                <Paper className='!fsdfsdf!'>
-                    <Table className='!SDAD!'>
-                        <TableHead className="header-table-view">
-                            <TableRow>
-                                <TableCell>Название материала</TableCell>
-                                <TableCell align="right">Стоимость</TableCell>
-                                <TableCell align="right">Есть в продаже?</TableCell>
-                                <TableCell align="right">Архивный?</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {rows.map(row => (
-                                <TableRow key={row.id}>
-                                    <TableCell component="th" scope="row">
-                                        {row.name}
-                                    </TableCell>
-                                    <TableCell align="right">{row.cost}</TableCell>
-                                    <TableCell align="right">{this.isActive(row.isInStore)}</TableCell>
-                                    <TableCell align="right">{ this.isActive(row.isArchieved)}
-                                    </TableCell>
+                    <div className="add-button-circle">
+                        <Fab color="primary" aria-label="Add" onClick={this.handleAddClick}>
+                            <AddIcon/>
+                        </Fab>
+                    </div>
+                    <Paper className='!fsdfsdf!'>
+                        <Table className='!SDAD!'>
+                            <TableHead className="header-table-view">
+                                <TableRow>
+                                    <TableCell>Название материала</TableCell>
+                                    <TableCell align="right">Стоимость</TableCell>
+                                    <TableCell align="right">Есть в продаже?</TableCell>
+                                    <TableCell align="right">Архивный?</TableCell>
                                 </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </Paper>
-            </React.Fragment>)
+                            </TableHead>
+                            <TableBody>
+                                {rows.map(row => (
+                                    <TableRow key={row.id}>
+                                        <TableCell component="th" scope="row">
+                                            {row.name}
+                                        </TableCell>
+                                        <TableCell align="right">{row.cost}</TableCell>
+                                        <TableCell align="right">{this.isActive(row.isInStore)}</TableCell>
+                                        <TableCell align="right">{this.isActive(row.isArchieved)}
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </Paper>
+                </React.Fragment>)
     }
 }

@@ -1,0 +1,7 @@
+{
+  "timestamp": "2019-05-26T18:16:49.602+0000",
+  "status": 500,
+  "error": "Internal Server Error",
+  "message": "Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]; nested exception is com.fasterxml.jackson.databind.exc.InvalidDefinitionException: No serializer found for class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor and no properties discovered to create BeanSerializer (to avoid exception, disable SerializationFeature.FAIL_ON_EMPTY_BEANS) (through reference chain: com.sleepandtrip.webapp.enteties.Delivery$HibernateProxy$7dNuD66Q[\"hibernateLazyInitializer\"])",
+  "path": "/api/getDelivery"
+}

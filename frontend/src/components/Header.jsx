@@ -20,11 +20,11 @@ export class Header extends React.Component{
                 <div className="menu-div">
 
                     <Row className='main-menu'>
-                        <Col> <Link to='/orders'>Заказы</Link> </Col>
-                        <Col> <Link to='/canvas'>Материалы</Link> </Col>
-                        <Col> <Link to='/sache'>Саше</Link> </Col>
-                        <Col> <Link to='/cover'>Чехлы</Link> </Col>
-                        <Col> <Link to='/delivery'>Доставка</Link> </Col>
+                        <Col className="header-link"> <Link to='/orders'>Заказы</Link> </Col>
+                        <Col className="header-link"> <Link to='/canvas'>Материалы</Link> </Col>
+                        <Col className="header-link"> <Link to='/sache'>Саше</Link> </Col>
+                        <Col className="header-link"> <Link to='/cover'>Чехлы</Link> </Col>
+                        <Col className="header-link"> <Link to='/delivery'>Доставка</Link> </Col>
                     </Row>
 
                 </div>

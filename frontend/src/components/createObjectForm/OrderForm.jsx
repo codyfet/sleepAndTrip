@@ -41,7 +41,7 @@ export class OrderForm extends React.Component {
         };
 
 
-        fetch(API_URL + '/getDelivery', myInint)
+        fetch(API_URL + '/getDeliveryList', myInint)
             .then(response => response.json())
             .then(data => this.setState({deliveryList: data}));
 
@@ -102,6 +102,13 @@ export class OrderForm extends React.Component {
 
     }
 
+    selectorCreator(arr){
+        return  arr.map((row) =>
+                <option key={row.id} value={row.id}>
+                    {row.name}
+                </option>);
+    }
+
     render() {
 
         if (this.state.isLoading) return "Loading...";
@@ -127,11 +134,7 @@ export class OrderForm extends React.Component {
                             <select name='deliveryType' onChange={this.handleChange}
                                     value={this.state.order.deliveryType}>
                                 <option value=""></option>
-                                {deliveryList.map((delivery) =>
-                                    <option key={delivery.id} value={delivery.id}>
-                                        {delivery.name}
-                                    </option>)
-                                }
+                                {this.selectorCreator(deliveryList) }
                             </select>
                         </p>
                         <p>Комментарий:
@@ -140,21 +143,13 @@ export class OrderForm extends React.Component {
                         <p>Название ткани:
                             <select name='canvas' onChange={this.handleChange} value={this.state.order.canvas}>
                                 <option value=""></option>
-                                {canvasList.map((canvas) =>
-                                    <option key={canvas.id} value={canvas.id}>
-                                        {canvas.name}
-                                    </option>)
-                                }
+                                {this.selectorCreator(canvasList) }
                             </select>
                         </p>
                         <p>Аромат саше:
                             <select name='sache' onChange={this.handleChange} value={this.state.order.sache}>
                                 <option value=""></option>
-                                {sacheList.map((sache) =>
-                                    <option key={sache.id} value={sache.id}>
-                                        {sache.name}
-                                    </option>)
-                                }
+                                {this.selectorCreator(sacheList) }
                             </select>
                         </p>
                         <p>Нужен патч?
@@ -164,11 +159,7 @@ export class OrderForm extends React.Component {
                         <p>Вид чехла:
                             <select name='cover' onChange={this.handleSelectChange} value={this.state.order.cover}>
                                 <option value=""></option>
-                                {coverList.map((cover) =>
-                                    <option key={cover.id} value={cover.id}>
-                                        {cover.name}
-                                    </option>)
-                                }
+                                {this.selectorCreator(coverList) }
                             </select>
                         </p>
                         <button onClick={this.handleSubmit}>Создать!</button>

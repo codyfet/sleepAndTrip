@@ -65,10 +65,12 @@ export class CoverList extends React.Component {
             this.state.redirectToLogin ?
                 <Redirect to="/newCover" push/> :
             <React.Fragment>
+                <div className="add-button-circle">
                 <Fab color="primary" aria-label="Add" onClick={this.handleAddClick}>
                     <AddIcon />
                 </Fab>
-                <Paper className='!fsdfsdf!'>
+                </div>
+                <Paper>
                     <Table>
                         <TableHead className="header-table-view">
                             <TableRow>

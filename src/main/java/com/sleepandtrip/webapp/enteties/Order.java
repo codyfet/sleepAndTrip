@@ -5,6 +5,7 @@ import com.sleepandtrip.webapp.enteties.enums.OrderState;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Column;
@@ -119,11 +120,13 @@ public class Order {
     @Getter
     @Setter
     @Column(name="ORDER_DATE",nullable = false )
+    @Type(type="date")
     private Date orderDate;
 
     @Getter
     @Setter
     @Column(name="DONE_DATE")
+    @Type(type="date")
     private String orderDoneDate;
 
     @Getter

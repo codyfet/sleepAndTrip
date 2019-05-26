@@ -1,0 +1,400 @@
+GET http://localhost:8080/api/getDelivery?id=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-26T093635.200.json
+
+###
+
+GET http://localhost:8080/api/getDelivery?id=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-26T093302.500.json
+
+###
+
+GET http://localhost:8080/api/getDelivery?id=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-26T091649.500.json
+
+###
+
+GET http://localhost:8080/api/getDelivery?id=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-26T091121.500.json
+
+###
+
+GET http://localhost:8080/api/getDelivery?id=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-26T090928.500.json
+
+###
+
+GET http://localhost:8080/api/getDelivery?id=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-26T090728.400.json
+
+###
+
+GET http://localhost:8080/api/getDelivery?id=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-26T090616.400.json
+
+###
+
+GET http://localhost:8080/api/getDelivery?id=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-26T090345.400.json
+
+###
+
+GET http://localhost:8080/api/newDelivery?id=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-26T090326.405.json
+
+###
+
+POST http://localhost:8080/api/newCanvas?composition=99% Shit&cost=2500&isArchieved=false&isInStore=false&name=Gaupt!
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-21T102157.400.json
+
+###
+
+GET http://localhost:8080/api/filteredByState?state=PROCESS
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-20T093925.200.json
+
+###
+
+GET http://localhost:8080/api/filteredByState?state=DELIVERED
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-20T093909.200.json
+
+###
+
+GET http://localhost:8080/api/filteredByState?state=CREATED
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-20T093855.200.json
+
+###
+
+GET http://localhost:8080/api/filteredByState?state=CREATED
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-20T093658.200.json
+
+###
+
+GET http://localhost:8080/api/filteredByState?state=CREATED
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-20T093656.200.json
+
+###
+
+POST http://localhost:8080/api/filteredByState?state=CREATED
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-20T093652.200.json
+
+###
+
+POST http://localhost:8080/api/newOrder?adress=sdfsdf&deliveryType=1&havePatch=True&cover=1&comment=Ничего не надо!&phone=123456&canvas=2&sache=2
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-13T092352.200.json
+
+###
+
+POST http://localhost:8080/api/newOrder?adress=sdfsdf&deliveryType=1&havePatch=True&cover=1&comment=&phone=+23423455235235&canvas=2&sache=2
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-13T092326.500.json
+
+###
+
+POST http://localhost:8080/api/newOrder?adress=sdfsdf&deliveryType=1&havePatch=True&cover=1&comment=&phone=&canvas=2&sache=2
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-13T103348.200.json
+
+###
+
+POST http://localhost:8080/api/newOrder?adress=sdfsdf&deliveryType=1&havePatch=True&cover=1&comment=&phone=&canvas=2&sache=2
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T110034.200.json
+
+###
+
+POST http://localhost:8080/api/newOrder?adress=sdfsdf&deliveryType=1&havePatch=True&cover=1&comment=&phone=&canvas=2&sache=2
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T105805.200.json
+
+###
+
+GET http://localhost:8080/api/getCover
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T103233.200.json
+
+###
+
+GET http://localhost:8080/api/getCover
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T095326.200.json
+
+###
+
+GET http://localhost:8080/api/getCover
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T094947.200.json
+
+###
+
+GET http://localhost:8080/api/getCover
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T094946.200.json
+
+###
+
+GET http://localhost:8080/api/getCover
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T094945.200.json
+
+###
+
+GET http://localhost:8080/api/getCover
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T094944-1.200.json
+
+###
+
+GET http://localhost:8080/api/getCover
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T094944.200.json
+
+###
+
+GET http://localhost:8080/api/getCover
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T094942.200.json
+
+###
+
+GET http://localhost:8080/api/getCover
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T044009.200.json
+
+###
+
+GET http://localhost:8080/api/getCover
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T044007.200.json
+
+###
+
+GET http://localhost:8080/api/getCover
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T044006.200.json
+
+###
+
+GET http://localhost:8080/api/getCover
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T044005.200.json
+
+###
+
+GET http://localhost:8080/api/getCover
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T043849.200.json
+
+###
+
+GET http://localhost:8080/api/getDelivery
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T025523.200.json
+
+###
+
+GET http://localhost:8080/api/getDelivery
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T011805.200.json
+
+###
+
+GET http://localhost:8080/api/getSache
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T011634.200.json
+
+###
+
+GET http://localhost:8080/api/getDelivery
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T123939.200.json
+
+###
+
+GET http://localhost:8080/api/getSache
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T123930.200.json
+
+###
+
+GET http://localhost:8080/api/getsache
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T123218.200.json
+
+###
+
+GET http://localhost:8080/api/sache
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T123210.404.json
+
+###
+
+GET http://localhost:8080/api/getSache
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T123201.404.json
+
+###
+
+GET http://localhost:8080/api/getCanvas
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T123004.200.json
+
+###
+
+GET http://localhost:8080/api/getcanvas
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T122959.404.json
+
+###
+
+GET http://localhost:8080/api/canvas
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T122950.200.json
+
+###
+
+GET http://localhost:8080/api/sache
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T122942.404.json
+
+###
+
+GET http://localhost:8080/api/getSache
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T122923.404.json
+
+###
+
+GET http://localhost:8080/api/getSache
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T122922.404.json
+
+###
+
+GET http://localhost:8080/api/getSache
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T122859.404.json
+
+###
+
+GET http://localhost:8080/api/sache
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-12T122825.404.json
+
+###
+
