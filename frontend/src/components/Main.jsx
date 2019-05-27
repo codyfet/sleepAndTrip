@@ -13,6 +13,7 @@ import {SacheList} from "./tables/SacheList";
 import {CoverList} from "./tables/CovList";
 import {OrderForm} from "./createObjectForm/OrderForm";
 import {EditDelivery} from "./editAndViewForm/EditDelivery";
+import {EditOrder} from "./editAndViewForm/EditOrder";
 
 
 export const Main = () => {
@@ -32,6 +33,8 @@ export const Main = () => {
                 <Route path='/newCover' component={CoverForm}/>
 
                 <Route path="/editDelivery" component={EditDelivery}/>
+                <Route path="/editOrder" component={EditOrder}/>
+
             </Switch>
         </div>
     )

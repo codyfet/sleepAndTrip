@@ -12,7 +12,7 @@ export class OrderForm extends React.Component {
                 recipient: '',
                 phone: '',
                 adress: '',
-                deliveryType: '',
+                delivery: '',
                 comment: '',
                 cover: '',
                 canvas: '',
@@ -41,7 +41,7 @@ export class OrderForm extends React.Component {
         };
 
 
-        fetch(API_URL + '/getDeliveryList', myInint)
+        fetch(API_URL + '/getActiveDelivery', myInint)
             .then(response => response.json())
             .then(data => this.setState({deliveryList: data}));
 
@@ -131,7 +131,7 @@ export class OrderForm extends React.Component {
                             <input type='tel' name='phone' onChange={this.handleChange} value={this.state.order.phone}/>
                         </p>
                         <p>Вид доставки:
-                            <select name='deliveryType' onChange={this.handleChange}
+                            <select name='delivery' onChange={this.handleChange}
                                     value={this.state.order.deliveryType}>
                                 <option value=""></option>
                                 {this.selectorCreator(deliveryList) }

@@ -107,8 +107,12 @@ export class CoverForm extends React.Component {
                             <Form.Group>
 
                                 <span>
-                        <Form.Label>Есть в продаже?</Form.Label>
-                        <Form.Check id='isInStore' onChange={this.handleChange}/>
+
+                        <Form.Check
+                            id="isInStore"
+                            label="Есть в продаже?"
+                            onChange={this.handleChange}
+                        />
                     </span>
                             </Form.Group>
 

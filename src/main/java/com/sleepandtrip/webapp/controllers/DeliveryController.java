@@ -28,12 +28,16 @@ public class DeliveryController {
 
     @GetMapping(path = "/getDeliveryList")
     public List<Delivery> getDeliveryList(){
+        return deliveryRepository.findAll(); }
+
+
+    @GetMapping(path = "/getActiveDelivery")
+    public List<Delivery> getActiveDelivery(){
         return deliveryRepository.findByActivity(true);
     }
 
     @GetMapping("/getDelivery")
     public Delivery getDilevery(@RequestParam(value = "id") Long id){
-
         return deliveryRepository.findById(id).orElse(null);
     }
 

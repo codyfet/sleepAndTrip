@@ -73,7 +73,7 @@ public class OrderController {
             @RequestParam(value = "recipient") String recipient,
             @RequestParam(value = "adress") String adress,
             @RequestParam(value = "phone") String phone,
-            @RequestParam(value = "deliveryType") Long deliveryTypeId,
+            @RequestParam(value = "delivery") Long deliveryTypeId,
             @RequestParam(value = "comment") String comment,
             @RequestParam(value = "canvas") Long canvasId,
             @RequestParam(value = "sache") Long sacheId,
@@ -86,7 +86,7 @@ public class OrderController {
         newOrder.setRecipient(recipient);
         newOrder.setAdress(adress);
         newOrder.setPhone(phone);
-        newOrder.setDeliveryTypeId(deliveryTypeId);
+
         newOrder.setComment(comment);
         newOrder.setHavePatch(havePatch);
         newOrder.setOrderDate(new Date());
@@ -100,6 +100,7 @@ public class OrderController {
             Optional<Delivery> delivery = deliveryRepository.findById(deliveryTypeId);
             summ += delivery.map(Delivery::getMinimalCost)
                     .orElseThrow(() -> new RuntimeException("Стоимость доставки не указана"));
+            newOrder.setDelivery(deliveryRepository.getOne(deliveryTypeId));
         }
 
         if (canvasId != null) {

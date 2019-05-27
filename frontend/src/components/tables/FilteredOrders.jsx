@@ -21,17 +21,16 @@ export class FilteredOrders extends React.Component {
             table: {
                 minWidth: 700,
             },
-            dataKey: [],
             orderList: [],
-            redirectToLogin: false,
+            redirectToAdd: false,
             redirectToEdit: false,
-            redirectEditId: '',
-            rowNames : ["Телефон", "Адрес доставки", "Вид доставки", "Дата заказа", "Получатель", "сумма", "номер посылки"],
-            keys : ["phone", "adress", "deliveryType", "orderDate", "recipient", "summ", "trackNumber"]
+            order: '1',
+            rowNames: ["Телефон", "Адрес доставки", "Вид доставки", "Дата заказа", "Получатель", "сумма", "номер посылки"],
+            keys: ["phone", "adress", "deliveryType", "orderDate", "recipient", "summ", "trackNumber"]
         };
 
         this.isActive = this.isActive.bind(this);
-        this.handleCick = this.handleCick.bind(this);
+        this.handleRowClick = this.handleRowClick.bind(this);
         this.handleAddClick = this.handleAddClick.bind(this);
 
     }
@@ -61,62 +60,68 @@ export class FilteredOrders extends React.Component {
     }
 
     isActive(bool) {
-
         return bool ? "Да" : "Нет";
     }
 
-    handleCick(key) {
- //       this.setState({redirectToEdit: key});
-        console.log(this.state.orderList.filter((row) => {
-            return row.id == key
-        })[0]);
-}
+    handleRowClick(key) {
+        this.setState({
+                order:
+                    this.state.orderList.filter((row) => {
+                        return row.id === key
+                    })[0]
+            }
+        );
+        this.setState({redirectToEdit: true});
+    }
 
-handleAddClick()
-{
-    this.setState({redirectToLogin: true})
-}
+    handleAddClick() {
+        this.setState({redirectToAdd: true})
+    }
 
-render()
-{
-    const {orderList, rowNames, keys} = this.state;
-    const redirectEditId = this.state.redirectEditId;
-    return (
-        this.state.redirectToLogin ?
-            <Redirect to="/newOrder" push/> :
-            <React.Fragment>
-                    <div className="add-button-circle">
-                        <Fab color="primary" aria-label="Add" onClick={this.handleAddClick}>
-                            <AddIcon className="add-button"/>
-                        </Fab>
-                    </div>
-                    <Paper>
-                        <Table>
-                            <TableHead className="header-table-view">
-                                <TableRow key="head">
-                                    {rowNames.map(row => (
-                                        <TableCell key={row}>{row}</TableCell>
-                                    ))}
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {orderList.map(row => (
-                                    <TableRow key={row.id} onClick={() => this.handleCick(row.id)}>
-                                        {
-                                            keys.map(bat => (
-                                                <TableCell
-                                                    key={`${row.id}${bat}`}>{
-                                                        typeof row[bat] == "boolean" ? this.isActive(row[bat]) :
-                                                        !row[bat] ? "-" : row[bat]
-                                                    }</TableCell>
-                                            ))}
+    render() {
+        const {orderList, rowNames, keys, order} = this.state;
+
+        return (
+            this.state.redirectToAdd ?
+                <Redirect to="/newOrder" push/> :
+                this.state.redirectToEdit ?
+                    <Redirect to={{
+                        pathname: "/editOrder",
+                        state: {order}
+                    }} push/> :
+                    <React.Fragment>
+                        <div className="add-button-circle">
+                            <Fab color="primary" aria-label="Add" onClick={this.handleAddClick}>
+                                <AddIcon className="add-button"/>
+                            </Fab>
+                        </div>
+                        <Paper>
+                            <Table>
+                                <TableHead className="header-table-view">
+                                    <TableRow key="head">
+                                        {rowNames.map(row => (
+                                            <TableCell key={row}>{row}</TableCell>
+                                        ))}
                                     </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {orderList.map(row => (
+                                        <TableRow key={row.id} onClick={() => this.handleRowClick(row.id)}>
+                                            {
+                                                keys.map(bat => (
+                                                    <TableCell
+                                                        key={`${row.id}${bat}`}>{
+                                                        typeof row[bat] == "boolean" ? this.isActive(row[bat]) :
+                                                            !row[bat] ? "-" : row[bat]
+                                                    }</TableCell>
+                                                ))}
+                                        </TableRow>
 
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </Paper>
-                </React.Fragment>)
-}
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </Paper>
+                    </React.Fragment>)
+    }
 }
 

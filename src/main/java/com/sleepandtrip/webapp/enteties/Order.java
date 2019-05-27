@@ -53,10 +53,16 @@ public class Order {
     @Column(nullable = false)
     private String adress; //TODO: Move to OrderToPerson entity on STAGE 2
 
-    @Getter
-    @Setter
-    @Column(name = "DELIVERYTYPE_ID", nullable = false)
-    private Long deliveryTypeId;
+
+    @ManyToOne
+    @JoinColumn(name ="DELIVERYTYPE_ID")
+    private Delivery delivery;
+    public Delivery getDelivery() {
+        return delivery;
+    }
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
+    }
 
     @Getter
     @Setter
@@ -102,11 +108,9 @@ public class Order {
     @ManyToOne
     @JoinColumn(name ="COVER_ID")
     private Cover cover;
-
     public Cover getCover() {
         return cover;
     }
-
     public void setCover(Cover cover) {
         this.cover = cover;
     }
