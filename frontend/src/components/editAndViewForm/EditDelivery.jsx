@@ -29,15 +29,16 @@ export class EditDelivery extends React.Component {
 
         console.log(delivery);
 
-        this.setState(
-                    {
-                        id: delivery.id,
-                        name: delivery.name,
-                        minimalCost: delivery.minimalCost,
-                        phone: delivery.phone,
-                        isActive: delivery.isActive
-                    });
-
+        if (delivery != null) {
+            this.setState(
+                {
+                    id: delivery.id,
+                    name: delivery.name,
+                    minimalCost: delivery.minimalCost,
+                    phone: delivery.phone,
+                    isActive: delivery.isActive
+                });
+        }
 
     }
 
@@ -114,18 +115,23 @@ export class EditDelivery extends React.Component {
                                         id="id"
                                         readOnly
                                     />
-                                    <Form.Label>Активна?</Form.Label>
-                                    <Form.Check
-                                        defaultValue={isActive}
-                                        id="isActive"
-                                        onChange={this.handleChange}
-                                    />
                                 </Row>
                                 <Row>
                                     <Col>
                                         <Form.Label>Название доставки</Form.Label>
-                                        <Form.Control type="text" defaultValue={name} id='name'
-                                                     />
+                                        <Form.Control
+                                            type="text"
+                                            defaultValue={name}
+                                            id='name'
+                                            onChange={this.handleChange}
+                                        />
+
+                                        <Form.Check
+                                            defaultValue={isActive}
+                                            id="isActive"
+                                            label="Активна?"
+                                            onChange={this.handleChange}
+                                        />
                                     </Col>
 
                                     <Col>

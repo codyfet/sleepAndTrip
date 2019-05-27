@@ -103,20 +103,26 @@ export class CanvasForm extends React.Component {
                                 </Row>
 
 
-                            <Form.Label>Стоимость</Form.Label>
-                            <Form.Control type="text" id='cost' onChange={this.handleChange}/>
+                                <Form.Label>Стоимость</Form.Label>
+                                <Form.Control type="text" id='cost' onChange={this.handleChange}/>
 
-                            <Row>
-                                <Col>
-                                    <Form.Label>Архивный?</Form.Label>
-                                    <Form.Check id='isArchieved' onChange={this.handleChange}/>
-                                </Col>
+                                <Row>
+                                    <Col>
+                                        <Form.Check
+                                            id='isInStore'
+                                            label="Есть в продаже?"
+                                            onChange={this.handleChange}
+                                        />
+                                    </Col>
+                                    <Col>
+                                        <Form.Check
+                                            id='isArchieved'
+                                            label="Архивный?"
+                                            onChange={this.handleChange}
+                                        />
+                                    </Col>
 
-                                <Col>
-                                    <Form.Label>Есть в продаже?</Form.Label>
-                                    <Form.Check id='isInStore' onChange={this.handleChange}/>
-                                </Col>
-                            </Row>
+                                </Row>
                             </Form.Group>
                             <Row>
                                 <ButtonToolbar>

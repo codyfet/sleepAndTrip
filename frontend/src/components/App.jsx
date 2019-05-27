@@ -12,9 +12,11 @@ export class App extends React.Component {
             <Paper className="Main-block">
                 <div className="App Site">
                     <div className="Site-content">
+
                         <div className="App-header">
                             <Header/>
                         </div>
+
                         <div className="main">
                             <Main/>
                         </div>

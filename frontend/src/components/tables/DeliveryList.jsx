@@ -60,7 +60,7 @@ export class DeliveryList extends React.Component {
         if (typeof bool == "boolean") {
             return bool ? "Да" : "Нет"
         } else {
-            return bool
+            return !bool ? "-" : bool;
         }
     }
 
@@ -69,8 +69,6 @@ export class DeliveryList extends React.Component {
     }
 
     handleRowClick(key) {
-
-
         this.setState({
                 delivery:
                     this.state.deliveryList.filter((row) => {
@@ -80,7 +78,6 @@ export class DeliveryList extends React.Component {
         );
         this.setState({redirectToEdit: true});
 
-
     }
 
     render() {
@@ -89,7 +86,7 @@ export class DeliveryList extends React.Component {
         return (
             this.state.redirectToLogin ?
                 <Redirect to="/newDelivery" push/> :
-                this.state.redirectToEdit ?
+            this.state.redirectToEdit ?
                     <Redirect to={{
                         pathname: "/editDelivery",
                         state: {delivery}
@@ -116,7 +113,7 @@ export class DeliveryList extends React.Component {
                                         <TableRow key={row.id} onClick={() => this.handleRowClick(row.id)}>
                                             {keys.map(key => (
                                                 <TableCell key={`${row.id}${key}`}>
-                                                    {!row[key] ? "-" : this.handleCellsValues(row[key])
+                                                    {this.handleCellsValues(row[key])
                                                     }
                                                 </TableCell>
                                             ))}

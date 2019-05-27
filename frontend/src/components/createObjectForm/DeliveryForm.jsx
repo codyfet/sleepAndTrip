@@ -92,8 +92,11 @@ export class DeliveryForm extends React.Component {
                                     <Col>
                                         <Form.Label>Название доставки</Form.Label>
                                         <Form.Control type="text" id='name' onChange={this.handleChange}/>
-                                        <Form.Label>Активна ?</Form.Label>
-                                        <Form.Check id='isActive' onChange={this.handleChange}/>
+                                        <Form.Check
+                                            id="isActive"
+                                            label="Активна?"
+                                            onChange={this.handleChange}
+                                        />
                                     </Col>
 
                                     <Col>
