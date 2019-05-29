@@ -3,11 +3,10 @@ package com.sleepandtrip.webapp.enteties;
 
 import com.sleepandtrip.webapp.enteties.enums.OrderState;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.beans.factory.annotation.Required;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,9 +15,17 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.util.Date;
 
+
+/**
+ * Класс определяет сущность заказа.
+ *
+ *
+ */
 
 @Entity
 @Table(name = "ORDERS")
@@ -28,26 +35,34 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
-    @Setter
     private Long id;
+
+    @Getter
+    @Setter
+    private String Recipient; //TODO: Удалить на этапе дипломной работы
+
+    @Getter
+    @Setter
+    @Column(name="PHONE")
+    @Length(max=13,min=6)
+    private String phone; //TODO: Move to OrderToPerson entity on STAGE 2
 
     @Getter
     @Setter
     @Length(max = 255)
     @Column(nullable = false)
-
     private String adress; //TODO: Move to OrderToPerson entity on STAGE 2
 
-    @Getter
-    @Setter
-    @Column(name = "DELIVERYTYPEID", nullable = false)
-    private Long deliveryTypeId;
 
-    @Getter
-    @Setter
-    @Column(name = "TRACKNUMBER")
-    @Length(max = 100)
-    private String trackNumber;
+    @ManyToOne
+    @JoinColumn(name ="DELIVERYTYPE_ID")
+    private Delivery delivery;
+    public Delivery getDelivery() {
+        return delivery;
+    }
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
+    }
 
     @Getter
     @Setter
@@ -65,20 +80,41 @@ public class Order {
     //@Column(nullable = false)
     private Float summ;
 
-    @Getter
-    @Setter
-    @Column(name = "CANVASID")
-    private Long canvasId;
+    @ManyToOne
+    @JoinColumn(name ="CANVAS_ID")
+    private Canvas canvas;
 
-    @Getter
-    @Setter
-    @Column(name = "SACHEID")
-    private Long sacheId;
+    public Canvas getCanvas() {
+        return canvas;
+    }
 
-    @Getter
-    @Setter
-    @Column(name = "COVERID")
-    private Long coverId;
+    public void setCanvas(Canvas canvas) {
+        this.canvas = canvas;
+    }
+
+    @ManyToOne
+    @JoinColumn(name ="SACHE_ID")
+    private Sache sache;
+
+    public Sache getSache() {
+        return sache;
+    }
+
+    public void setSache(Sache sache) {
+        this.sache = sache;
+    }
+
+
+    @ManyToOne
+    @JoinColumn(name ="COVER_ID")
+    private Cover cover;
+    public Cover getCover() {
+        return cover;
+    }
+    public void setCover(Cover cover) {
+        this.cover = cover;
+    }
+
 
     @Getter
     @Setter
@@ -87,25 +123,31 @@ public class Order {
 
     @Getter
     @Setter
-    @Length(max = 255)
-    @Column(name = "LETTERINGURL")
-    private String letteringURL;
-
-    @Getter
-    @Setter
     @Column(name="ORDER_DATE",nullable = false )
+    @Type(type="date")
     private Date orderDate;
 
     @Getter
     @Setter
     @Column(name="DONE_DATE")
+    @Type(type="date")
     private String orderDoneDate;
 
     @Getter
     @Setter
-    @Column(name="PHONE")
-    @Length(max=13,min=6)
-    private String phone;
+    private Boolean payed;
+
+    @Getter
+    @Setter
+    @Length(max= 150, min = 4)
+    private String creator;
+
+    @Getter
+    @Setter
+    @Column(name = "TRACKNUMBER")
+    @Length(max = 100)
+    private String trackNumber;
+
 
 //    @Getter
 //    @Setter
@@ -117,7 +159,11 @@ public class Order {
 //    @Column(name = "FEEDBACKCOMMENT")
 //    @Length(max = 255)
 //    private String feedbackComment;
-
+//    @Getter
+//    @Setter
+//    @Length(max = 255)
+//    @Column(name = "LETTERINGURL")
+//    private String letteringURL;
 
 }
 

@@ -5,7 +5,6 @@ public enum OrderState {
 
 
     CREATED     ("Создан"),
-    PAYED       ("Оплачен"),
     PROCESS     ("Производится"),
     SENDED      ("Отправлен"),
     DELIVERED   ("Получен");

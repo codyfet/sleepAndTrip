@@ -10,7 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.Set;
 
 @Entity
 @Table(name = "CANVAS")
@@ -21,11 +23,19 @@ public class Canvas {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToMany
+    private Set<Order> orderSet;
+
     @Getter
     @Setter
     @Length(max = 32)
     @Column(name = "NAME") //TODO: Make column Canvas preview URL nullable = false
     private String name;
+
+    @Getter
+    @Setter
+    @Length(max=100)
+    private String composition;
 
     @Getter
     @Setter
@@ -41,13 +51,13 @@ public class Canvas {
 
     @Getter
     @Setter
-    @Column(name = "CANVAS_COST")
-    private Float canvasCost;
+    @Column(name = "COST")
+    private Float cost;
 
     @Getter
     @Setter
     @Column(name = "IS_ARCHIEVED", nullable = false)
-    private Boolean isArchhieved;
+    private Boolean isArchieved;
 
     @Getter
     @Setter
