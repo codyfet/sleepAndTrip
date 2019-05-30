@@ -5,11 +5,11 @@ import TableBody from '@material-ui/core/TableBody/index';
 import TableCell from '@material-ui/core/TableCell/index';
 import TableHead from '@material-ui/core/TableHead/index';
 import TableRow from '@material-ui/core/TableRow/index';
-import {API_URL} from "../../app-config";
 import {Redirect} from 'react-router-dom';
 import Fab from "@material-ui/core/Fab";
 import AddIcon from '@material-ui/icons/Add';
 
+import {getAllOrders} from '../../services/services';
 export class FilteredOrders extends React.Component {
     constructor(props) {
         super(props);
@@ -41,15 +41,7 @@ export class FilteredOrders extends React.Component {
 
     refreshTable() {
 
-
-        const myInint = {
-            method: 'GET',
-            headers: new Headers(),
-            mode: 'cors',
-            cache: 'default'
-        };
-
-        fetch(API_URL + '/getAllOrders', myInint)
+        getAllOrders()
             .then(response => response.json())
             .then(data => {
                 this.setState({orderList: data})

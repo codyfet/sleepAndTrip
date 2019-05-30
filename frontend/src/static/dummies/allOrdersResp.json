@@ -1,0 +1,48 @@
+[
+    {
+        "adress": "дмитрия донского",
+        "canvas": {
+            "canvasPreviewURL": null,
+            "canvasViewURL": null,
+            "composition": "Хлопок 100%",
+            "cost": 100,
+            "id": 1,
+            "isArchieved": false,
+            "isInStore": true,
+            "name": "Хлебосоль"
+        },
+        "comment": "Не надо",
+        "cover": {
+            "cost": 300,
+            "description": "Хорошо подходит для путешествий",
+            "id": 2,
+            "isInStore": true,
+            "name": "Тряпичный чехол"
+        },
+        "creator": null,
+        "delivery": {
+            "id": 2,
+            "isActive": true,
+            "minimalCost": 100,
+            "name": "DHL",
+            "phone": "+7(4822)555-555"
+        },
+        "havePatch": true,
+        "id": 3,
+        "orderDate": "2019-05-29",
+        "orderDoneDate": null,
+        "orderState": "CREATED",
+        "payed": false,
+        "phone": "898928925",
+        "recipient": "Мякишь Кукаракишь",
+        "sache": {
+            "cost": 150,
+            "description": "восточный колорит",
+            "id": 2,
+            "isInStore": true,
+            "name": "Бадьян"
+        },
+        "summ": 850,
+        "trackNumber": null
+    }
+]

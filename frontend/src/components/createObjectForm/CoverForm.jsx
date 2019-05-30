@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, ButtonToolbar, Col, Form, Row} from 'react-bootstrap';
-import {API_URL} from "../../app-config";
+import {API_URL} from "../../config/config";
 import {Redirect} from 'react-router-dom';
 
 export class CoverForm extends React.Component {

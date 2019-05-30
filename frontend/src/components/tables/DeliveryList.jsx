@@ -5,7 +5,7 @@ import TableBody from '@material-ui/core/TableBody/index';
 import TableCell from '@material-ui/core/TableCell/index';
 import TableHead from '@material-ui/core/TableHead/index';
 import TableRow from '@material-ui/core/TableRow/index';
-import {API_URL} from "../../app-config";
+import {API_URL} from "../../config/config";
 import {Redirect} from 'react-router-dom';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';

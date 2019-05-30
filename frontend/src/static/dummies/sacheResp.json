@@ -1,0 +1,42 @@
+[
+    {
+        "canvasPreviewURL": null,
+        "canvasViewURL": null,
+        "composition": "Хлопок 100%",
+        "cost": 100,
+        "id": 1,
+        "isArchieved": false,
+        "isInStore": true,
+        "name": "Хлебосоль"
+    },
+    {
+        "canvasPreviewURL": null,
+        "canvasViewURL": null,
+        "composition": "Хлопок 100%",
+        "cost": 100,
+        "id": 2,
+        "isArchieved": false,
+        "isInStore": true,
+        "name": "Орегано"
+    },
+    {
+        "canvasPreviewURL": null,
+        "canvasViewURL": null,
+        "composition": "Хлопок 100%",
+        "cost": 200,
+        "id": 3,
+        "isArchieved": false,
+        "isInStore": true,
+        "name": "Папоротник"
+    },
+    {
+        "canvasPreviewURL": null,
+        "canvasViewURL": null,
+        "composition": "Хлопок 100%",
+        "cost": 300,
+        "id": 4,
+        "isArchieved": false,
+        "isInStore": true,
+        "name": "Печатница"
+    }
+]

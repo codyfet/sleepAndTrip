@@ -1,5 +1,6 @@
 import * as React from "react";
-import {API_URL} from "../../app-config";
+import {API_URL} from "../../config/config";
+import {getActiveDelivery, getCanvas, getCover, getSache} from '../../services/services';
 import {Redirect} from 'react-router-dom';
 
 export class OrderForm extends React.Component {
@@ -33,27 +34,20 @@ export class OrderForm extends React.Component {
     }
 
     componentDidMount() {
-        const myInint = {
-            method: 'GET',
-            headers: new Headers(),
-            mode: 'cors',
-            cache: 'default'
-        };
 
-
-        fetch(API_URL + '/getActiveDelivery', myInint)
+        getActiveDelivery()
             .then(response => response.json())
             .then(data => this.setState({deliveryList: data}));
 
-        fetch(API_URL + '/getCanvas', myInint)
+        getCanvas()
             .then(response => response.json())
             .then(data => this.setState({canvasList: data}));
 
-        fetch(API_URL + '/getCover', myInint)
+        getCover()
             .then(response => response.json())
             .then(data => this.setState({coverList: data}));
 
-        fetch(API_URL + '/getSache', myInint)
+        getSache()
             .then(response => response.json())
             .then(data => this.setState({sacheList: data, isLoading: false}));
     }
